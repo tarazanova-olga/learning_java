@@ -4,13 +4,12 @@ public class MyFirstProgram
 {
 	public static void main(String[] args)
 	{
-		double len = 5;
-		double a = 5;
-		double b = 12;
+		Square s = new Square(5); //создаем новый объект - квадрат
+		Rectangle r = new Rectangle(5,12); //создаем новый объект - прямоугольник
 		hello("world");
 		hello("olga");
-		System.out.println("Площадь квадрата со стороной " + len + " = " + area(len));
-		System.out.println("Площадь прямоугольника со сторонами " + a  + " и " + b + " = " + area(a,b));
+		System.out.println("Площадь квадрата со стороной " + s.l + " = " + s.area());
+		System.out.println("Площадь прямоугольника со сторонами " + r.a  + " и " + r.b + " = " + r.area());
 		
 	}
 	public static void hello(String name)
@@ -18,15 +17,4 @@ public class MyFirstProgram
 		System.out.println("Hello, " + name + "!");
 	}
 	
-	//функция для расчета площади квадрата, принимающая 1 параметр
-	public static double area(double l)
-	{
-		return l*l;
-	}
-		
-	//функция для расчета площади прямоугольника, принимающая 2 параметра
-	public static double area(double a, double b)
-	{
-		return a*b;
-	}
 }
