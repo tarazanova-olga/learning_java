@@ -1,5 +1,6 @@
-package my.learning_java.addressbook;
+package my.learning_java.addressbook.tests;
 
+import my.learning_java.addressbook.model.ContactData;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.AfterMethod;
