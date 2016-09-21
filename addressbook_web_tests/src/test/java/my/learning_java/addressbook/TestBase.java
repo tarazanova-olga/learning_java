@@ -3,16 +3,16 @@ package my.learning_java.addressbook;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 import java.util.concurrent.TimeUnit;
 
 public class TestBase {
-    ChromeDriver wd;
+    FirefoxDriver wd;
 
-    public static boolean isAlertPresent(ChromeDriver wd) {
+    public static boolean isAlertPresent(FirefoxDriver wd) {
         try {
             wd.switchTo().alert();
             return true;
@@ -23,7 +23,7 @@ public class TestBase {
 
     @BeforeMethod
     public void setUp() throws Exception {
-        wd = new ChromeDriver();
+        wd = new FirefoxDriver();
         wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
         wd.get("http://localhost/addressbook/index.php");
         login("admin", "secret");
