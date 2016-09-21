@@ -9,9 +9,9 @@ public class ApplicationManager {
 
     FirefoxDriver wd;
 
-    private ContactHelper contactHelper;
-    private SessionHelper sessionHelper;
-    private NavigationHelper navigationHelper;
+    public ContactHelper contactHelper;
+    public SessionHelper sessionHelper;
+    public NavigationHelper navigationHelper;
     public GroupHelper groupHelper;
 
     public void init() {
