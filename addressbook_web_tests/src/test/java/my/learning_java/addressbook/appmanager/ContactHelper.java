@@ -9,10 +9,9 @@ public class ContactHelper extends BaseHelper {
     public ContactHelper(FirefoxDriver wd) {super(wd);
     }
 
-    public void submitContactPage() {
-        click(By.xpath("//div[@id='content']/form/input[21]"));
+    public void submitContactPage() {click(By.name("submit"));}
 
-    }
+    public void UpdateContactPage() {click(By.name("update"));}
 
     public void fillContactPage(ContactData contactData)
     {
@@ -25,13 +24,19 @@ public class ContactHelper extends BaseHelper {
 
     }
 
-    public void initContactCreation() {
-        click(By.linkText("add new"));
+    public void initContactCreation() {click(By.linkText("add new"));}
 
+    public void returnToHomePage() {click(By.linkText("home page"));}
+
+    public void selectContact() {
+        click(By.name("selected[]"));
     }
 
-    public void returnToHomePage() {
-        click(By.linkText("home page"));
-
+    public void deleteSelectedContact (){
+        click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
     }
+
+    public void editSelectedContact () {click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));}
+
+
 }
