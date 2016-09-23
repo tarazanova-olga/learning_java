@@ -11,7 +11,7 @@ public class ContactHelper extends BaseHelper {
 
     public void submitContactPage() {click(By.name("submit"));}
 
-    public void UpdateContactPage() {click(By.name("update"));}
+    public void updateContactPage() {click(By.name("update"));}
 
     public void fillContactPage(ContactData contactData)
     {
