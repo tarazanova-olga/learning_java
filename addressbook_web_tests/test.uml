@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="680.0190476190476" y="-51.88819875776403">my.learning_java.addressbook.appmanager.SessionHelper</node>
+    <node x="531.2857142857143" y="464.2857142857143">my.learning_java.addressbook.tests.GroupDeletionTest</node>
+    <node x="519.0190476190476" y="-54.71428571428572">my.learning_java.addressbook.appmanager.NavigationHelper</node>
+    <node x="786.7857142857143" y="233.28571428571428">my.learning_java.addressbook.model.ContactData</node>
+    <node x="882.2857142857143" y="464.2857142857143">my.learning_java.addressbook.tests.ContactModificationTest</node>
+    <node x="1.0190476190475692" y="266.2857142857143">my.learning_java.addressbook.model.GroupData</node>
+    <node x="377.0190476190477" y="-56.1273291925466">my.learning_java.addressbook.appmanager.ContactHelper</node>
+    <node x="400.53571428571433" y="48.524844720497015">my.learning_java.addressbook.appmanager.ApplicationManager</node>
+    <node x="350.2857142857143" y="464.2857142857143">my.learning_java.addressbook.tests.ContactDeletionTest</node>
+    <node x="-15.714285714285666" y="464.2857142857143">my.learning_java.addressbook.tests.GroupCreationTest</node>
+    <node x="244.6060041407868" y="-56.127329192546654">my.learning_java.addressbook.appmanager.GroupHelper</node>
+    <node x="432.03571428571433" y="-240.49689440993785">my.learning_java.addressbook.appmanager.BaseHelper</node>
+    <node x="701.2857142857143" y="464.2857142857143">my.learning_java.addressbook.tests.ContactCreationTest</node>
+    <node x="416.53571428571433" y="288.2857142857143">my.learning_java.addressbook.tests.TestBase</node>
+    <node x="154.28571428571428" y="464.2857142857143">my.learning_java.addressbook.tests.GroupModificationTest</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="my.learning_java.addressbook.tests.ContactCreationTest" target="my.learning_java.addressbook.tests.TestBase">
+      <point x="-40.25" y="-14.5" />
+      <point x="741.5357142857143" y="434.2857142857143" />
+      <point x="569.5357142857143" y="434.2857142857143" />
+      <point x="51.0" y="25.5" />
+    </edge>
+    <edge source="my.learning_java.addressbook.tests.GroupCreationTest" target="my.learning_java.addressbook.tests.TestBase">
+      <point x="37.5" y="-14.5" />
+      <point x="96.78571428571433" y="424.2857142857143" />
+      <point x="433.53571428571433" y="424.2857142857143" />
+      <point x="-85.0" y="25.5" />
+    </edge>
+    <edge source="my.learning_java.addressbook.tests.GroupModificationTest" target="my.learning_java.addressbook.model.GroupData">
+      <point x="-44.0" y="-14.5" />
+      <point x="198.28571428571428" y="414.2857142857143" />
+      <point x="154.76904761904757" y="414.2857142857143" />
+      <point x="51.25" y="47.5" />
+    </edge>
+    <edge source="my.learning_java.addressbook.tests.GroupCreationTest" target="my.learning_java.addressbook.model.GroupData">
+      <point x="-37.5" y="-14.5" />
+      <point x="21.785714285714334" y="444.2857142857143" />
+      <point x="52.26904761904757" y="444.2857142857143" />
+      <point x="-51.25" y="47.5" />
+    </edge>
+    <edge source="my.learning_java.addressbook.tests.GroupModificationTest" target="my.learning_java.addressbook.tests.TestBase">
+      <point x="44.0" y="-14.5" />
+      <point x="286.2857142857143" y="434.2857142857143" />
+      <point x="467.53571428571433" y="434.2857142857143" />
+      <point x="-51.0" y="25.5" />
+    </edge>
+    <edge source="my.learning_java.addressbook.appmanager.ApplicationManager" target="my.learning_java.addressbook.appmanager.GroupHelper">
+      <point x="-73.75" y="-69.5" />
+      <point x="444.78571428571433" y="14.285714285714278" />
+      <point x="329.26904761904757" y="14.285714285714278" />
+      <point x="27.75" y="14.5" />
+    </edge>
+    <edge source="my.learning_java.addressbook.appmanager.ContactHelper" target="my.learning_java.addressbook.appmanager.BaseHelper">
+      <point x="5.6843418860808015E-14" y="-14.5" />
+      <point x="438.0190476190477" y="-74.71428571428572" />
+      <point x="490.53571428571433" y="-74.71428571428572" />
+      <point x="-19.5" y="25.5" />
+    </edge>
+    <edge source="my.learning_java.addressbook.appmanager.SessionHelper" target="my.learning_java.addressbook.appmanager.BaseHelper">
+      <point x="0.0" y="-14.5" />
+      <point x="740.5190476190476" y="-84.71428571428572" />
+      <point x="568.5357142857143" y="-84.71428571428572" />
+      <point x="58.5" y="25.5" />
+    </edge>
+    <edge source="my.learning_java.addressbook.appmanager.ApplicationManager" target="my.learning_java.addressbook.appmanager.SessionHelper">
+      <point x="103.25" y="-69.5" />
+      <point x="621.7857142857143" y="24.285714285714278" />
+      <point x="770.7690476190476" y="24.285714285714278" />
+      <point x="30.25" y="14.5" />
+    </edge>
+    <edge source="my.learning_java.addressbook.tests.TestBase" target="my.learning_java.addressbook.appmanager.ApplicationManager">
+      <point x="-51.0" y="-25.5" />
+      <point x="467.53571428571433" y="208.28571428571428" />
+      <point x="459.53571428571433" y="208.28571428571428" />
+      <point x="-59.0" y="69.5" />
+    </edge>
+    <edge source="my.learning_java.addressbook.tests.ContactModificationTest" target="my.learning_java.addressbook.tests.TestBase">
+      <point x="-46.75" y="-14.5" />
+      <point x="929.0357142857143" y="424.2857142857143" />
+      <point x="603.5357142857143" y="424.2857142857143" />
+      <point x="85.0" y="25.5" />
+    </edge>
+    <edge source="my.learning_java.addressbook.appmanager.NavigationHelper" target="my.learning_java.addressbook.appmanager.BaseHelper">
+      <point x="0.0" y="-14.5" />
+      <point x="589.5190476190476" y="-74.71428571428572" />
+      <point x="529.5357142857143" y="-74.71428571428572" />
+      <point x="19.5" y="25.5" />
+    </edge>
+    <edge source="my.learning_java.addressbook.appmanager.GroupHelper" target="my.learning_java.addressbook.appmanager.BaseHelper">
+      <point x="0.0" y="-14.5" />
+      <point x="301.51904761904757" y="-84.71428571428572" />
+      <point x="451.53571428571433" y="-84.71428571428572" />
+      <point x="-58.5" y="25.5" />
+    </edge>
+    <edge source="my.learning_java.addressbook.appmanager.ApplicationManager" target="my.learning_java.addressbook.appmanager.ContactHelper">
+      <point x="-14.75" y="-69.5" />
+      <point x="503.78571428571433" y="-5.714285714285722" />
+      <point x="468.51904761904757" y="-5.714285714285722" />
+      <point x="30.5" y="14.5" />
+    </edge>
+    <edge source="my.learning_java.addressbook.tests.ContactDeletionTest" target="my.learning_java.addressbook.tests.TestBase">
+      <point x="5.6843418860808015E-14" y="-14.5" />
+      <point x="430.78571428571433" y="444.2857142857143" />
+      <point x="501.53571428571433" y="444.2857142857143" />
+      <point x="-17.0" y="25.5" />
+    </edge>
+    <edge source="my.learning_java.addressbook.tests.GroupDeletionTest" target="my.learning_java.addressbook.tests.TestBase">
+      <point x="0.0" y="-14.5" />
+      <point x="606.2857142857143" y="444.2857142857143" />
+      <point x="535.5357142857143" y="444.2857142857143" />
+      <point x="17.0" y="25.5" />
+    </edge>
+    <edge source="my.learning_java.addressbook.tests.ContactModificationTest" target="my.learning_java.addressbook.model.ContactData">
+      <point x="46.75" y="-14.5" />
+      <point x="1022.5357142857143" y="444.2857142857143" />
+      <point x="993.7857142857143" y="444.2857142857143" />
+      <point x="69.0" y="80.5" />
+    </edge>
+    <edge source="my.learning_java.addressbook.tests.ContactCreationTest" target="my.learning_java.addressbook.model.ContactData">
+      <point x="40.25" y="-14.5" />
+      <point x="822.0357142857143" y="444.2857142857143" />
+      <point x="855.7857142857143" y="444.2857142857143" />
+      <point x="-69.0" y="80.5" />
+    </edge>
+    <edge source="my.learning_java.addressbook.appmanager.ApplicationManager" target="my.learning_java.addressbook.appmanager.NavigationHelper">
+      <point x="14.75" y="-69.5" />
+      <point x="533.2857142857143" y="24.285714285714278" />
+      <point x="554.2690476190476" y="24.285714285714278" />
+      <point x="-35.25" y="14.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.8" x="542.5" y="192.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
