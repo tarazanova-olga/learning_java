@@ -2,11 +2,12 @@ package my.learning_java.addressbook.appmanager;
 
 import my.learning_java.addressbook.model.ContactData;
 import org.openqa.selenium.By;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.WebDriver;
+
 
 public class ContactHelper extends BaseHelper {
 
-    public ContactHelper(FirefoxDriver wd) {super(wd);
+    public ContactHelper(WebDriver wd) {super(wd);
     }
 
     public void submitContactPage() {click(By.name("submit"));}
