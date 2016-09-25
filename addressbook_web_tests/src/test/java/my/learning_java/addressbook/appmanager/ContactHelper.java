@@ -2,7 +2,10 @@ package my.learning_java.addressbook.appmanager;
 
 import my.learning_java.addressbook.model.ContactData;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 
 
 public class ContactHelper extends BaseHelper {
@@ -14,7 +17,7 @@ public class ContactHelper extends BaseHelper {
 
     public void updateContactPage() {click(By.name("update"));}
 
-    public void fillContactPage(ContactData contactData)
+    public void fillContactPage(ContactData contactData, boolean creation)
     {
         type(By.name("firstname"), contactData.getNameContact());
         type(By.name("middlename"), contactData.getMiddleNameContact());
@@ -23,6 +26,11 @@ public class ContactHelper extends BaseHelper {
         type(By.name("email"), contactData.getEmailContact());
         type(By.name("address"), contactData.getAddressContact());
 
+        if (creation){
+            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+        } else {
+            Assert.assertFalse(isElementPresent(By.name("new_group")));
+        }
     }
 
     public void initContactCreation() {click(By.linkText("add new"));}
