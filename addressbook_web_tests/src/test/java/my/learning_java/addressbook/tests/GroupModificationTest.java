@@ -13,7 +13,7 @@ public class GroupModificationTest extends TestBase {
         app.getNavigationHelper().gotoGroupPage();
         app.getGroupHelper().selectGroup();
         app.getGroupHelper().submitEditGroup();
-        app.getGroupHelper().fillGroupPage(new GroupData("Измененное название группы", "изменение1", "изменение2"));
+        app.getGroupHelper().fillGroupPage(new GroupData("Новая группа", "изменение1", "изменение2"));
         app.getGroupHelper().submitGroupUpdate();
         app.getGroupHelper().returnToGroupPage();
     }

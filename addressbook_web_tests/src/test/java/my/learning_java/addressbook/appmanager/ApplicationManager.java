@@ -17,7 +17,7 @@ public class ApplicationManager {
     public SessionHelper sessionHelper;
     public NavigationHelper navigationHelper;
     public GroupHelper groupHelper;
-    private String browser;
+    public String browser;
 
     public ApplicationManager(String browser) {
         this.browser = browser;
