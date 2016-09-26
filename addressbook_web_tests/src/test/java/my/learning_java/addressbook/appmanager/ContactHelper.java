@@ -2,7 +2,6 @@ package my.learning_java.addressbook.appmanager;
 
 import my.learning_java.addressbook.model.ContactData;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
@@ -47,5 +46,17 @@ public class ContactHelper extends BaseHelper {
 
     public void editSelectedContact () {click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));}
 
+
+    public boolean isThereContact() {
+        return isElementPresent(By.name("selected[]"));
+    }
+
+    public void createContact(ContactData contact, boolean creation) {
+        initContactCreation();
+        fillContactPage(contact, creation);
+        submitContactPage();
+        returnToHomePage();
+
+    }
 
 }
