@@ -51,12 +51,11 @@ public class ContactHelper extends BaseHelper {
         return isElementPresent(By.name("selected[]"));
     }
 
-    public void createContact(ContactData contact, boolean creation) {
+    public void createContact(ContactData contact) {
         initContactCreation();
-        fillContactPage(contact, creation);
+        fillContactPage(contact, true);
         submitContactPage();
         returnToHomePage();
-
     }
 
 }
