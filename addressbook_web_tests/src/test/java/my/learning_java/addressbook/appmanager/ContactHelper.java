@@ -58,4 +58,8 @@ public class ContactHelper extends BaseHelper {
         returnToHomePage();
     }
 
+    public int getContactCount() {
+        return wd.findElements(By.name("selected[]")).size();
+    }
+
 }
