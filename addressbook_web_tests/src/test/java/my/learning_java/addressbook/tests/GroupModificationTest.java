@@ -5,6 +5,8 @@ import my.learning_java.addressbook.model.GroupData;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.List;
+
 public class GroupModificationTest extends TestBase {
 
     @Test
@@ -15,13 +17,13 @@ public class GroupModificationTest extends TestBase {
         if (! app.getGroupHelper().isThereGroup()){
             app.getGroupHelper().createGroup(new GroupData("Новая группа", null, null));
         }
-        int before = app.getGroupHelper().getGroupCount();
-        app.getGroupHelper().selectGroup();
+        List<GroupData> before = app.getGroupHelper().getGroupList();
+        app.getGroupHelper().selectGroup(before.size() - 1);
         app.getGroupHelper().submitEditGroup();
         app.getGroupHelper().fillGroupPage(new GroupData("Новая группа", "изменение1", "изменение2"));
         app.getGroupHelper().submitGroupUpdate();
         app.getGroupHelper().returnToGroupPage();
-        int after = app.getGroupHelper().getGroupCount();
-        Assert.assertEquals(after, before);
+        List<GroupData> after = app.getGroupHelper().getGroupList();
+        Assert.assertEquals(after.size(), before.size());
     }
 }
