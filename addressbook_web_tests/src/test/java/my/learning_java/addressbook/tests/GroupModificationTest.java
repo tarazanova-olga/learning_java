@@ -2,12 +2,10 @@ package my.learning_java.addressbook.tests;
 
 
 import my.learning_java.addressbook.model.GroupData;
-import org.apache.commons.collections.bag.HashBag;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.util.Collections;
-import java.util.HashSet;
+import java.util.Comparator;
 import java.util.List;
 
 public class GroupModificationTest extends TestBase {
@@ -32,6 +30,9 @@ public class GroupModificationTest extends TestBase {
 
         before.remove(before.size() - 1);
         before.add(group);
-        Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
+        Comparator<? super GroupData> byGroupId = (g1, g2) -> Integer.compare(g1.getGroupId(), g2.getGroupId());
+        before.sort(byGroupId);
+        after.sort(byGroupId);
+        Assert.assertEquals(before, after);
     }
 }
