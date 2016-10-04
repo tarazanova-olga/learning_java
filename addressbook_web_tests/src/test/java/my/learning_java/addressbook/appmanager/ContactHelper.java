@@ -3,8 +3,12 @@ package my.learning_java.addressbook.appmanager;
 import my.learning_java.addressbook.model.ContactData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class ContactHelper extends BaseHelper {
@@ -36,9 +40,8 @@ public class ContactHelper extends BaseHelper {
 
     public void returnToHomePage() {click(By.linkText("home page"));}
 
-    public void selectContact() {
-        click(By.name("selected[]"));
-    }
+    public void selectContact(int index) {
+            wd.findElements(By.name("selected[]")).get(index).click();}
 
     public void deleteSelectedContact (){
         click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
@@ -58,8 +61,24 @@ public class ContactHelper extends BaseHelper {
         returnToHomePage();
     }
 
-    public int getContactCount() {
-        return wd.findElements(By.name("selected[]")).size();
-    }
+ //   public int getContactCount() {
+ //       return wd.findElements(By.name("selected[]")).size();
+ //   }
 
+    public List<ContactData> getContactList() {
+        List<ContactData> contacts = new ArrayList<ContactData>();
+        List<WebElement> rows = wd.findElements(By.name("entry")); // возвращение списка строк контактов
+        for (WebElement row : rows){
+            List<WebElement> cells = row.findElements(By.tagName("td")); // разделяем строки на отдельные ячейки
+            String name = cells.get(2).getText();
+            String lastname = cells.get(1).getText();
+            int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
+            ContactData contact = new ContactData(name, null, lastname, null, null, null, null, id);
+            contacts.add(contact);
+        }
+
+        return contacts;
+    }
 }
+
+

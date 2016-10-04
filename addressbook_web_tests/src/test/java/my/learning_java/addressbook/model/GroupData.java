@@ -40,10 +40,6 @@ public class GroupData {
         return groupFooter;
     }
 
-    public void setGroupId(int groupId) {
-        this.groupId = groupId;
-    }
-
     @Override
     public String toString() {
         return "GroupData{" +
