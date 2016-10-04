@@ -1,7 +1,8 @@
-package my.learning_java.addressbook.tests;
+package my.learning_java.addressbook.tests.tests_for_contacts;
 
 
 import my.learning_java.addressbook.model.ContactData;
+import my.learning_java.addressbook.tests.TestBase;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

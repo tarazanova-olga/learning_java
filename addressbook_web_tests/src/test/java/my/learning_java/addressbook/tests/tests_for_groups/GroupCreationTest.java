@@ -1,6 +1,7 @@
-package my.learning_java.addressbook.tests;
+package my.learning_java.addressbook.tests.tests_for_groups;
 
 import my.learning_java.addressbook.model.GroupData;
+import my.learning_java.addressbook.tests.TestBase;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

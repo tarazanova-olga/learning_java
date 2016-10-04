@@ -1,7 +1,8 @@
-package my.learning_java.addressbook.tests;
+package my.learning_java.addressbook.tests.tests_for_groups;
 
 
 import my.learning_java.addressbook.model.GroupData;
+import my.learning_java.addressbook.tests.TestBase;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -21,7 +22,7 @@ public class GroupModificationTest extends TestBase {
         List<GroupData> before = app.getGroupHelper().getGroupList();
         app.getGroupHelper().selectGroup(before.size() - 1);
         app.getGroupHelper().submitEditGroup();
-        GroupData group = new GroupData("Новая группа", "изменение1", "изменение2", before.get(before.size() - 1).getGroupId());
+        GroupData group = new GroupData("Новая группа2", "изменение1", "изменение2", before.get(before.size() - 1).getGroupId());
         app.getGroupHelper().fillGroupPage(group);
         app.getGroupHelper().submitGroupUpdate();
         app.getGroupHelper().returnToGroupPage();
