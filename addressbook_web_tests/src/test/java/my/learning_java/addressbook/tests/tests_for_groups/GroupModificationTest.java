@@ -4,36 +4,34 @@ package my.learning_java.addressbook.tests.tests_for_groups;
 import my.learning_java.addressbook.model.GroupData;
 import my.learning_java.addressbook.tests.TestBase;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.Comparator;
-import java.util.List;
+import java.util.Set;
 
 public class GroupModificationTest extends TestBase {
 
-    @Test
-
-    public void testGroupModificationTest()
-    {
-        app.getNavigationHelper().gotoGroupPage();
-        if (! app.getGroupHelper().isThereGroup()){
-            app.getGroupHelper().createGroup(new GroupData("Новая группа", null, null));
+    @BeforeMethod
+    public  void ensurePrecondition() {
+        app.goTo().GroupPage();
+        if (app.group().all().size() == 0) {
+            app.group().create(new GroupData().withName("test1"));
         }
-        List<GroupData> before = app.getGroupHelper().getGroupList();
-        app.getGroupHelper().selectGroup(before.size() - 1);
-        app.getGroupHelper().submitEditGroup();
-        GroupData group = new GroupData("Новая группа2", "изменение1", "изменение2", before.get(before.size() - 1).getGroupId());
-        app.getGroupHelper().fillGroupPage(group);
-        app.getGroupHelper().submitGroupUpdate();
-        app.getGroupHelper().returnToGroupPage();
-        List<GroupData> after = app.getGroupHelper().getGroupList();
+    }
+
+    @Test
+    public void testGroupModificationTest(){
+        Set<GroupData> before = app.group().all();
+        GroupData modifyGroup = before.iterator().next();
+        GroupData group = new GroupData().withId(modifyGroup.
+                getGroupId()).withName("name").withHeader("header").withFooter("footer");
+        app.group().modify(group);
+        Set<GroupData> after = app.group().all();
         Assert.assertEquals(after.size(), before.size());
 
-        before.remove(before.size() - 1);
+        before.remove(modifyGroup);
         before.add(group);
-        Comparator<? super GroupData> byGroupId = (g1, g2) -> Integer.compare(g1.getGroupId(), g2.getGroupId());
-        before.sort(byGroupId);
-        after.sort(byGroupId);
         Assert.assertEquals(before, after);
     }
+
 }

@@ -1,39 +1,53 @@
 package my.learning_java.addressbook.model;
 
 public class ContactData {
-    private final String nameContact;
-    private final String middleNameContact;
-    private final String lastNameContact;
-    private final String phoneContact;
-    private final String emailContact;
-    private final String addressContact;
+    private String nameContact;
+    private String middleNameContact;
+    private String lastNameContact;
+    private String phoneContact;
+    private String emailContact;
+    private String addressContact;
     private String group;
-    private int contactId;
+    private int contactId = Integer.MAX_VALUE;
 
-
-
-    public ContactData(String nameContact, String middleNameContact, String lastNameContact, String phoneContact,
-                       String emailContact, String addressContact, String group) {
+    public ContactData withName(String nameContact) {
         this.nameContact = nameContact;
-        this.middleNameContact = middleNameContact;
-        this.lastNameContact = lastNameContact;
-        this.phoneContact = phoneContact;
-        this.emailContact = emailContact;
-        this.addressContact = addressContact;
-        this.group = group;
-        this.contactId = Integer.MAX_VALUE;
+        return this;
     }
 
-    public ContactData(String nameContact, String middleNameContact, String lastNameContact, String phoneContact,
-                       String emailContact, String addressContact, String group, int contactId) {
-        this.nameContact = nameContact;
+    public ContactData withMiddleName(String middleNameContact) {
         this.middleNameContact = middleNameContact;
+        return this;
+    }
+
+    public ContactData withLastName(String lastNameContact) {
         this.lastNameContact = lastNameContact;
+        return this;
+    }
+
+    public ContactData withPhone(String phoneContact) {
         this.phoneContact = phoneContact;
+        return this;
+    }
+
+    public ContactData withEmail(String emailContact) {
         this.emailContact = emailContact;
+        return this;
+    }
+
+    public ContactData withAddress(String addressContact) {
         this.addressContact = addressContact;
+        return this;
+    }
+
+    public ContactData withGroup(String group) {
         this.group = group;
+        return this;
+    }
+
+    public ContactData withId(int contactId) {
         this.contactId = contactId;
+        return this;
     }
 
     public String getNameContact() { return nameContact; }
@@ -72,7 +86,6 @@ public class ContactData {
                 '}';
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -80,6 +93,7 @@ public class ContactData {
 
         ContactData that = (ContactData) o;
 
+        if (contactId != that.contactId) return false;
         if (nameContact != null ? !nameContact.equals(that.nameContact) : that.nameContact != null) return false;
         return lastNameContact != null ? lastNameContact.equals(that.lastNameContact) : that.lastNameContact == null;
 
@@ -89,8 +103,7 @@ public class ContactData {
     public int hashCode() {
         int result = nameContact != null ? nameContact.hashCode() : 0;
         result = 31 * result + (lastNameContact != null ? lastNameContact.hashCode() : 0);
+        result = 31 * result + contactId;
         return result;
     }
-
-
 }

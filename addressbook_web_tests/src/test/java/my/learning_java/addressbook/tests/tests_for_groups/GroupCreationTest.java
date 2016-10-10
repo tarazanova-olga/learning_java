@@ -5,25 +5,22 @@ import my.learning_java.addressbook.tests.TestBase;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.util.Comparator;
-import java.util.List;
+import java.util.Set;
 
 
 public class GroupCreationTest extends TestBase {
 
     @Test
     public void testGroupCreationTest() {
-          app.getNavigationHelper().gotoGroupPage();
-          List<GroupData> before = app.getGroupHelper().getGroupList();
-          GroupData group = new GroupData("Новая группа2", "null", "null");
-          app.getGroupHelper().createGroup(group);
-          List<GroupData> after = app.getGroupHelper().getGroupList();
+          app.goTo().GroupPage();
+          Set<GroupData> before = app.group().all();
+          GroupData group = new GroupData().withName("test").withFooter("123").withHeader("987");
+          app.group().create(group);
+          Set<GroupData> after = app.group().all();
           Assert.assertEquals(after.size(), before.size() + 1);
 
+          group.withId(after.stream().mapToInt((g) -> g.getGroupId()).max().getAsInt());
           before.add(group);
-          Comparator<? super GroupData> byGroupId = (g1, g2) -> Integer.compare(g1.getGroupId(), g2.getGroupId());
-          before.sort(byGroupId);
-          after.sort(byGroupId);
           Assert.assertEquals(before, after);
     }
 }
