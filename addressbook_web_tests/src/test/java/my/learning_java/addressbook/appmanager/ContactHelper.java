@@ -52,7 +52,12 @@ public class ContactHelper extends BaseHelper {
 
 
     public void editSelectedContact (int id) {
-        wd.findElements(By.name("entry")).get(id).findElement(By.xpath(".//td[8]/a")).click();
+        wd.findElement((By.cssSelector("a[href='edit.php?id=" + id + "']"))).click();
+      //  WebElement checkbox = wd.findElement(By.cssSelector("input[value='" + id + "']"));
+      //  WebElement row = checkbox.findElement(By.xpath("./../.."));
+      //  List<WebElement> cells = row.findElements(By.tagName("td"));
+      //  cells.get(7).findElement(By.tagName("a")).click();
+
     }
 
     public void createContact(ContactData contact) {
@@ -62,9 +67,9 @@ public class ContactHelper extends BaseHelper {
         returnToHomePage();
     }
 
-    public void modify(ContactData newContact) {
-        editSelectedContact(newContact.getContactId());
-        fillContactPage(newContact, false);
+    public void modify(ContactData contact) {
+        editSelectedContact(contact.getContactId());
+        fillContactPage(contact, false);
         updateContactPage();
         returnToHomePage();
     }
