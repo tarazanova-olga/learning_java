@@ -1,6 +1,7 @@
 package my.learning_java.addressbook.appmanager;
 
 import my.learning_java.addressbook.model.ContactData;
+import my.learning_java.addressbook.model.Contacts;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -84,8 +85,8 @@ public class ContactHelper extends BaseHelper {
  //   }
 
 
-    public Set<ContactData> all() {
-        Set<ContactData> contacts = new HashSet<ContactData>();
+    public Contacts all() {
+        Contacts contacts = new Contacts();
         List<WebElement> rows = wd.findElements(By.name("entry")); // возвращение списка строк контактов
         for (WebElement row : rows){
             List<WebElement> cells = row.findElements(By.tagName("td")); // разделяем строки на отдельные ячейки

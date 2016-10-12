@@ -1,6 +1,7 @@
 package my.learning_java.addressbook.appmanager;
 
 import my.learning_java.addressbook.model.GroupData;
+import my.learning_java.addressbook.model.Groups;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -67,17 +68,16 @@ public class GroupHelper extends BaseHelper {
         returnToGroupPage();
     }
 
-    public Set<GroupData> all() {
-        Set<GroupData> groups = new HashSet<GroupData>();
+    public Groups all() {
+        Groups groups = new Groups();
         List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
         for (WebElement element : elements){
             String name = element.getText();
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-            groups.add(new GroupData().withName(name).withHeader(null).withFooter(null).withId(id));
+            groups.add(new GroupData().withId(id).withName(name));
         }
         return groups;
     }
-
 
 }
 
