@@ -37,9 +37,7 @@ public class GroupData {
     }
 
     public String getGroupHeader() {
-
         return groupHeader;
-
     }
 
     public String getGroupFooter() {
