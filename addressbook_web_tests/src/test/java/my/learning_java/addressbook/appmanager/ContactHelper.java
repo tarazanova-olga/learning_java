@@ -83,10 +83,6 @@ public class ContactHelper extends BaseHelper {
         contactCache = null;
     }
 
-    //   public int getContactCount() {
- //       return wd.findElements(By.name("selected[]")).size();
- //   }
-
     private Contacts contactCache = null;
 
     public Contacts all() {
@@ -109,6 +105,9 @@ public class ContactHelper extends BaseHelper {
     }
 
 
+    public int count() {
+        return wd.findElements(By.name("selected[]")).size();
+    }
 }
 
 
