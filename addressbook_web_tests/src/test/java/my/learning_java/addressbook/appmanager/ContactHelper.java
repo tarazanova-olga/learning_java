@@ -8,9 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 
 public class ContactHelper extends BaseHelper {
@@ -24,12 +22,12 @@ public class ContactHelper extends BaseHelper {
 
     public void fillContactPage(ContactData contactData, boolean creation)
     {
-        type(By.name("firstname"), contactData.getNameContact());
-        type(By.name("middlename"), contactData.getMiddleNameContact());
-        type(By.name("lastname"), contactData.getLastNameContact());
-        type(By.name("home"), contactData.getPhoneContact());
-        type(By.name("email"), contactData.getEmailContact());
-        type(By.name("address"), contactData.getAddressContact());
+        type(By.name("firstname"), contactData.getName());
+        type(By.name("middlename"), contactData.getMiddleName());
+        type(By.name("lastname"), contactData.getLastName());
+        type(By.name("home"), contactData.getHomePhone());
+        type(By.name("email"), contactData.getEmail());
+        type(By.name("address"), contactData.getAddress());
 
         if (creation){
             new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
@@ -54,10 +52,15 @@ public class ContactHelper extends BaseHelper {
 
     public void editSelectedContact (int id) {
         wd.findElement((By.cssSelector("a[href='edit.php?id=" + id + "']"))).click();
-      //  WebElement checkbox = wd.findElement(By.cssSelector("input[value='" + id + "']"));
+      //  wd.findElement((By.cssSelector(String.format("input[@value='%s']", id)))).click();
+
+      //  WebElement checkbox = wd.findElement(By.cssSelector("a[href='edit.php?id=" + id + "']"))).click();
       //  WebElement row = checkbox.findElement(By.xpath("./../.."));
       //  List<WebElement> cells = row.findElements(By.tagName("td"));
       //  cells.get(7).findElement(By.tagName("a")).click();
+
+      //  wd.findElement((By.xpath(String.format("input[@value='%s']/../../td[8]/a", id)))).click();
+      //  wd.findElement((By.xpath(String.format("//tr[.//input[@value='%s']/td[8]/a", id)))).click();
 
     }
 
@@ -96,9 +99,12 @@ public class ContactHelper extends BaseHelper {
             List<WebElement> cells = row.findElements(By.tagName("td")); // разделяем строки на отдельные ячейки
             String name = cells.get(2).getText();
             String lastname = cells.get(1).getText();
+            //String[] phones = cells.get(5).getText().split("\n");
+            String allPhones = cells.get(5).getText();
             int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
             contactCache.add(new ContactData().withName(name).withMiddleName(null).withLastName(lastname)
-                    .withGroup(null).withAddress(null).withPhone(null).withEmail(null).withId(id));
+                    .withGroup(null).withAddress(null).withEmail(null).withId(id)
+                    .withAllPhones(allPhones));
         }
 
         return new Contacts(contactCache);
@@ -107,6 +113,19 @@ public class ContactHelper extends BaseHelper {
 
     public int count() {
         return wd.findElements(By.name("selected[]")).size();
+    }
+
+    public ContactData infoFromEditForm(ContactData contact) {
+        editSelectedContact(contact.getContactId());
+        String name = wd.findElement(By.name("firstname")).getAttribute("value");
+        String lastname = wd.findElement(By.name("lastname")).getAttribute("value");
+        String homePhone = wd.findElement(By.name("home")).getAttribute("value");
+        String mobilePhone = wd.findElement(By.name("mobile")).getAttribute("value");
+        String workPhone = wd.findElement(By.name("work")).getAttribute("value");
+        String email = wd.findElement(By.name("email")).getAttribute("value");
+        wd.navigate().back();
+        return new ContactData().withId(contact.getContactId()).withName(name).withLastName(lastname).
+                withHomePhone(homePhone).withMobilePhone(mobilePhone).withWorkPhone(workPhone);
     }
 }
 

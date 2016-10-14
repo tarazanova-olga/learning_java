@@ -1,42 +1,66 @@
 package my.learning_java.addressbook.model;
 
 public class ContactData {
-    private String nameContact;
-    private String middleNameContact;
-    private String lastNameContact;
-    private String phoneContact;
-    private String emailContact;
-    private String addressContact;
+    private String name;
+    private String middleName;
+    private String lastName;
+    private String homePhone;
+    private String mobilePhone;
+    private String workPhone;
+    private String email;
+    private String address;
     private String group;
     private int contactId = Integer.MAX_VALUE;
 
+
+
+    private String allPhones;
+
+    public ContactData() {
+    }
+
     public ContactData withName(String nameContact) {
-        this.nameContact = nameContact;
+        this.name = nameContact;
         return this;
     }
 
     public ContactData withMiddleName(String middleNameContact) {
-        this.middleNameContact = middleNameContact;
+        this.middleName = middleNameContact;
         return this;
     }
 
     public ContactData withLastName(String lastNameContact) {
-        this.lastNameContact = lastNameContact;
+        this.lastName = lastNameContact;
         return this;
     }
 
-    public ContactData withPhone(String phoneContact) {
-        this.phoneContact = phoneContact;
+    public ContactData withHomePhone(String homePhone) {
+        this.homePhone = homePhone;
         return this;
     }
 
+    public ContactData withMobilePhone(String mobilePhone) {
+        this.mobilePhone = mobilePhone;
+        return this;
+    }
+
+
+    public ContactData withWorkPhone(String workPhone) {
+        this.workPhone = workPhone;
+        return this;
+    }
+
+    public ContactData withAllPhones(String allPhones) {
+        this.allPhones = allPhones;
+        return this;
+    }
     public ContactData withEmail(String emailContact) {
-        this.emailContact = emailContact;
+        this.email = emailContact;
         return this;
     }
 
     public ContactData withAddress(String addressContact) {
-        this.addressContact = addressContact;
+        this.address = addressContact;
         return this;
     }
 
@@ -50,26 +74,32 @@ public class ContactData {
         return this;
     }
 
-    public String getNameContact() { return nameContact; }
+    public String getName() { return name; }
 
-    public String getMiddleNameContact() {
-        return middleNameContact;
+    public String getMiddleName() {
+        return middleName;
     }
 
-    public String getLastNameContact() {
-        return lastNameContact;
+    public String getLastName() {return lastName;}
+
+    public String getHomePhone() {
+        return homePhone;
     }
 
-    public String getPhoneContact() {
-        return phoneContact;
+    public String getMobilePhone() {
+        return mobilePhone;
     }
 
-    public String getEmailContact() {
-        return emailContact;
+    public String getWorkPhone() {
+        return workPhone;
     }
 
-    public String getAddressContact() {
-        return addressContact;
+    public String getEmail() {
+        return email;
+    }
+
+    public String getAddress() {
+        return address;
     }
 
     public String getGroup() {
@@ -78,11 +108,13 @@ public class ContactData {
 
     public int getContactId() { return contactId; }
 
+    public String getAllPhones() {return allPhones;}
+
     @Override
     public String toString() {
         return "ContactData{" +
-                "nameContact='" + nameContact + '\'' +
-                ", lastNameContact='" + lastNameContact + '\'' +
+                "nameContact='" + name + '\'' +
+                ", lastNameContact='" + lastName + '\'' +
                 '}';
     }
 
@@ -94,16 +126,18 @@ public class ContactData {
         ContactData that = (ContactData) o;
 
         if (contactId != that.contactId) return false;
-        if (nameContact != null ? !nameContact.equals(that.nameContact) : that.nameContact != null) return false;
-        return lastNameContact != null ? lastNameContact.equals(that.lastNameContact) : that.lastNameContact == null;
+        if (name != null ? !name.equals(that.name) : that.name != null) return false;
+        return lastName != null ? lastName.equals(that.lastName) : that.lastName == null;
 
     }
 
     @Override
     public int hashCode() {
-        int result = nameContact != null ? nameContact.hashCode() : 0;
-        result = 31 * result + (lastNameContact != null ? lastNameContact.hashCode() : 0);
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
         result = 31 * result + contactId;
         return result;
     }
+
+
 }
