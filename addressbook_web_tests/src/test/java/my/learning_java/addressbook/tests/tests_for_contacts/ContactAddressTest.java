@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class ContactPhoneTest extends TestBase{
+public class ContactAddressTest extends TestBase{
 
     @BeforeMethod
     public  void ensurePrecondition() {
@@ -23,26 +23,23 @@ public class ContactPhoneTest extends TestBase{
         }
     }
 
-    // (enable = false)
     @Test
     public void testContactPage(){
         app.goTo().HomePage();
         ContactData contact = app.contact().all().iterator().next(); //загружаем множество контактов
         ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
 
-        assertThat(contact.getAllPhones(), equalTo(mergePhones(contactInfoFromEditForm)));
-        //assertThat(contact.getMobilePhone(), equalTo(cleaned(contactInfoFromEditForm.getMobilePhone())));
-
+        assertThat(cleaned(contact.getAddress()), equalTo(address((contactInfoFromEditForm))));
     }
 
-    private String mergePhones(ContactData contact) {
-        return Arrays.asList(contact.getHomePhone(), contact.getMobilePhone(), contact.getWorkPhone())
+    private String address (ContactData contact) {
+        return Arrays.asList(contact.getAddress())
                 .stream().filter((s) -> ! s.equals(""))
                 .map(ContactPhoneTest::cleaned)
                 .collect(Collectors.joining("\n"));
     }
 
-    public  static String cleaned(String phone){
-        return phone.replaceAll("\\s","").replaceAll("[-()]","");
+    public  static String cleaned(String phone){return phone.replaceAll("\\s","");
+
     }
 }

@@ -8,13 +8,13 @@ public class ContactData {
     private String mobilePhone;
     private String workPhone;
     private String email;
+    private String email2;
+    private String email3;
     private String address;
     private String group;
     private int contactId = Integer.MAX_VALUE;
-
-
-
     private String allPhones;
+    private String allEmails;
 
     public ContactData() {
     }
@@ -54,8 +54,24 @@ public class ContactData {
         this.allPhones = allPhones;
         return this;
     }
+
     public ContactData withEmail(String emailContact) {
         this.email = emailContact;
+        return this;
+    }
+
+    public ContactData withEmail2(String email2) {
+        this.email2 = email2;
+        return this;
+    }
+
+    public ContactData withEmail3(String email3) {
+        this.email3 = email3;
+        return this;
+    }
+
+    public ContactData withAllEmails(String allEmails) {
+        this.allEmails = allEmails;
         return this;
     }
 
@@ -74,13 +90,19 @@ public class ContactData {
         return this;
     }
 
-    public String getName() { return name; }
+
+
+    public String getName() {
+        return name;
+    }
 
     public String getMiddleName() {
         return middleName;
     }
 
-    public String getLastName() {return lastName;}
+    public String getLastName() {
+        return lastName;
+    }
 
     public String getHomePhone() {
         return homePhone;
@@ -98,6 +120,10 @@ public class ContactData {
         return email;
     }
 
+    public String getEmail2() {return email2;}
+
+    public String getEmail3() {return email3;}
+
     public String getAddress() {
         return address;
     }
@@ -106,9 +132,11 @@ public class ContactData {
         return group;
     }
 
-    public int getContactId() { return contactId; }
+    public int getContactId() {return contactId;}
 
     public String getAllPhones() {return allPhones;}
+
+    public String getAllEmails() {return allEmails;}
 
     @Override
     public String toString() {
@@ -139,5 +167,9 @@ public class ContactData {
         return result;
     }
 
-
 }
+
+
+
+
+
