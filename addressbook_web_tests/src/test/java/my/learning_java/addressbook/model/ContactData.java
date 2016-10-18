@@ -15,6 +15,7 @@ public class ContactData {
     private int contactId = Integer.MAX_VALUE;
     private String allPhones;
     private String allEmails;
+    private String allInfo;
 
     public ContactData() {
     }
@@ -90,6 +91,11 @@ public class ContactData {
         return this;
     }
 
+    public ContactData withAllInfo(String allInfo) {
+        this.allInfo = allInfo;
+        return this;
+    }
+
 
 
     public String getName() {
@@ -137,6 +143,8 @@ public class ContactData {
     public String getAllPhones() {return allPhones;}
 
     public String getAllEmails() {return allEmails;}
+
+    public String getAllInfo() {return allInfo;}
 
     @Override
     public String toString() {

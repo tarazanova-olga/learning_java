@@ -64,6 +64,10 @@ public class ContactHelper extends BaseHelper {
 
     }
 
+    public void infoSelectedContact (int id){
+        wd.findElement((By.cssSelector("a[href='view.php?id=" + id + "']"))).click();
+    }
+
     public void createContact(ContactData contact) {
         initContactCreation();
         fillContactPage(contact, true);
@@ -120,6 +124,7 @@ public class ContactHelper extends BaseHelper {
     public ContactData infoFromEditForm(ContactData contact) {
         editSelectedContact(contact.getContactId());
         String name = wd.findElement(By.name("firstname")).getAttribute("value");
+        String middlename = wd.findElement(By.name("middlename")).getAttribute("value");
         String lastname = wd.findElement(By.name("lastname")).getAttribute("value");
         String homePhone = wd.findElement(By.name("home")).getAttribute("value");
         String mobilePhone = wd.findElement(By.name("mobile")).getAttribute("value");
@@ -130,9 +135,17 @@ public class ContactHelper extends BaseHelper {
         String email3 = wd.findElement(By.name("email3")).getAttribute("value");
 
         wd.navigate().back();
-        return new ContactData().withId(contact.getContactId()).withName(name).withLastName(lastname).
+        return new ContactData().withId(contact.getContactId()).withName(name).withMiddleName(middlename).withLastName(lastname).
                 withHomePhone(homePhone).withMobilePhone(mobilePhone).withWorkPhone(workPhone).withAddress(address)
                 .withEmail(email).withEmail2(email2).withEmail3(email3);
+    }
+
+    public ContactData infoFromInfoForm(ContactData contact) {
+        infoSelectedContact(contact.getContactId());
+        String allInfo = wd.findElement(By.id("content")).getText();
+
+        wd.navigate().back();
+        return new ContactData().withId(contact.getContactId()).withAllInfo(allInfo);
     }
 }
 
