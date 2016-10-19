@@ -19,7 +19,7 @@ public class ContactInfoPageTest extends TestBase{
         app.goTo().HomePage();
         if (app.contact().all().size() == 0) {
             app.contact().createContact(new ContactData().withName("Иван").withMiddleName("Иванович").withLastName("Иванов")
-                    .withHomePhone("89651231123").withEmail("test@test.test").withAddress("ул. Мира, д.123").withGroup("Новая группа"));
+                    .withHomePhone("89651231123").withEmail("test@test.test").withAddress("ул. Мира, д.123"));
         }
     }
 
@@ -32,39 +32,37 @@ public class ContactInfoPageTest extends TestBase{
         ContactData contactInfoFromInfoForm = app.contact().infoFromInfoForm(contact);
         assertThat(cleaned(mergeAllContactInfoFromEditForm(contactInfoFromEditForm)),
                 equalTo(cleaned(mergeAllContactInfoFromInfoForm(contactInfoFromInfoForm))));
-
     }
 
     private String mergeAllContactInfoFromEditForm(ContactData contact) {
-        String getHomePhone = contact.getHomePhone();
-        if (getHomePhone != null){
-            getHomePhone = "H:" + getHomePhone;
+        String homePhone = contact.getHomePhone();
+        if (homePhone != null && !homePhone.isEmpty()){
+            homePhone = "H:" + homePhone;
         }
-        String getMobilePhone = contact.getMobilePhone();
-        if (getMobilePhone != null){
-            getMobilePhone = "M:" + getMobilePhone;
+        String mobilePhone = contact.getMobilePhone();
+        if (mobilePhone != null && !mobilePhone.isEmpty() ){
+            mobilePhone = "M:" + mobilePhone;
         }
-        String getWorkPhone = contact.getWorkPhone();
-        if (getWorkPhone != null){
-            getWorkPhone = "W:" + getWorkPhone;
+        String workPhone = contact.getWorkPhone();
+        if (workPhone != null && !workPhone.isEmpty()){
+            workPhone = "W:" + workPhone;
         }
-        String getEmail = contact.getEmail();
-        if (getEmail != null){
-            getEmail = getEmail + "www."+ getEmail.substring(getEmail.indexOf("@")+1);
+        String email = contact.getEmail();
+        if (email != null && !email.isEmpty()){
+            email = email + "www."+ email.substring(email.indexOf("@")+1);
         }
-        String getEmail2 = contact.getEmail2();
-        if (getEmail2 != null){
-            getEmail2 = getEmail2 + "www."+ getEmail2.substring(getEmail2.indexOf("@")+1);
+        String email2 = contact.getEmail2();
+        if (email2 != null && !email2.isEmpty()){
+            email2 = email2 + "www."+ email2.substring(email2.indexOf("@")+1);
         }
-        String getEmail3 = contact.getEmail3();
-        if (getEmail3 != null){
-            getEmail3 = getEmail3 + "www."+ getEmail3.substring(getEmail3.indexOf("@")+1);
+        String email3 = contact.getEmail3();
+        if (email3 != null && !email3.isEmpty()){
+            email3 = email3 + "www."+ email3.substring(email3.indexOf("@")+1);
         }
-
 
         return Arrays.asList((contact.getName()), contact.getMiddleName(), contact.getLastName()
-                , contact.getAddress(), getHomePhone, getMobilePhone, getWorkPhone,
-                getEmail, getEmail2, getEmail3)
+                , contact.getAddress(), homePhone, mobilePhone, workPhone,
+                email, email2, email3)
                 .stream().filter((s) -> s != null && !s.equals(""))
                 .map(ContactPhoneTest::cleaned)
                 .collect(Collectors.joining("\n"));

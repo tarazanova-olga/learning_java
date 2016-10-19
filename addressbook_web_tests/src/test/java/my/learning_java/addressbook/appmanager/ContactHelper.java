@@ -29,11 +29,11 @@ public class ContactHelper extends BaseHelper {
         type(By.name("email"), contactData.getEmail());
         type(By.name("address"), contactData.getAddress());
 
-        if (creation){
+        if (creation && contactData.getGroup() != null){
             new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
-        } else {
-            Assert.assertFalse(isElementPresent(By.name("new_group")));
-        }
+        } //else {
+ //           Assert.assertFalse(isElementPresent(By.name("new_group")));
+ //       }
     }
 
     public void initContactCreation() {click(By.linkText("add new"));}
