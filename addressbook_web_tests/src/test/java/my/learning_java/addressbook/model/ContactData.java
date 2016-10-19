@@ -1,5 +1,7 @@
 package my.learning_java.addressbook.model;
 
+import java.io.File;
+
 public class ContactData {
     private String name;
     private String middleName;
@@ -16,6 +18,7 @@ public class ContactData {
     private String allPhones;
     private String allEmails;
     private String allInfo;
+    private File photo;
 
     public ContactData() {
     }
@@ -96,7 +99,10 @@ public class ContactData {
         return this;
     }
 
-
+    public ContactData withPhoto(File photo) {
+        this.photo = photo;
+        return this;
+    }
 
     public String getName() {
         return name;
@@ -146,6 +152,7 @@ public class ContactData {
 
     public String getAllInfo() {return allInfo;}
 
+    public File getPhoto() {return photo;}
     @Override
     public String toString() {
         return "ContactData{" +
@@ -174,6 +181,9 @@ public class ContactData {
         result = 31 * result + contactId;
         return result;
     }
+
+
+
 
 }
 
