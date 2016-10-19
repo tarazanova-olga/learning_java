@@ -6,9 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class GroupHelper extends BaseHelper {
 
@@ -25,9 +23,9 @@ public class GroupHelper extends BaseHelper {
     }
 
     public void fillGroupPage(GroupData groupDate) {
-        type(By.name("group_name"), groupDate.getNameGroup());
+        type(By.name("group_name"), groupDate.getName());
         type(By.name("group_header"), groupDate.getGroupHeader());
-        type(By.name("group_footer"), groupDate.getGroupFooter());
+        type(By.name("group_footer"), groupDate.getFooter());
     }
 
     public void initGroupCreation() {

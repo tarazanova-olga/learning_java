@@ -12,7 +12,7 @@ public class GroupData {
         return groupId;
     }
 
-    public String getNameGroup() {
+    public String getName() {
 
         return nameGroup;
     }
@@ -40,7 +40,7 @@ public class GroupData {
         return groupHeader;
     }
 
-    public String getGroupFooter() {
+    public String getFooter() {
         return groupFooter;
     }
 
