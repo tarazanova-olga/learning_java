@@ -37,45 +37,43 @@ public class ContactInfoPageTest extends TestBase{
     private String mergeAllContactInfoFromEditForm(ContactData contact) {
         String homePhone = contact.getHomePhone();
         if (homePhone != null && !homePhone.isEmpty()){
-            homePhone = "H:" + homePhone;
+            homePhone = "H: " + homePhone;
         }
         String mobilePhone = contact.getMobilePhone();
         if (mobilePhone != null && !mobilePhone.isEmpty() ){
-            mobilePhone = "M:" + mobilePhone;
+            mobilePhone = "M: " + mobilePhone;
         }
         String workPhone = contact.getWorkPhone();
         if (workPhone != null && !workPhone.isEmpty()){
-            workPhone = "W:" + workPhone;
+            workPhone = "W: " + workPhone;
         }
         String email = contact.getEmail();
         if (email != null && !email.isEmpty()){
-            email = email + "www."+ email.substring(email.indexOf("@")+1);
+            email = email + " (www."+ email.substring(email.indexOf("@")+1) +")";
         }
         String email2 = contact.getEmail2();
         if (email2 != null && !email2.isEmpty()){
-            email2 = email2 + "www."+ email2.substring(email2.indexOf("@")+1);
+            email2 = email2 + " (www."+ email2.substring(email2.indexOf("@")+1) +")";
         }
         String email3 = contact.getEmail3();
         if (email3 != null && !email3.isEmpty()){
-            email3 = email3 + "www."+ email3.substring(email3.indexOf("@")+1);
+            email3 = email3 + " (www."+ email3.substring(email3.indexOf("@")+1) +")";
         }
 
-        return Arrays.asList((contact.getName()), contact.getMiddleName(), contact.getLastName()
+        return Arrays.asList(contact.getName(), contact.getMiddleName(), contact.getLastName()
                 , contact.getAddress(), homePhone, mobilePhone, workPhone,
                 email, email2, email3)
                 .stream().filter((s) -> s != null && !s.equals(""))
-                .map(ContactPhoneTest::cleaned)
                 .collect(Collectors.joining("\n"));
     }
 
     private String mergeAllContactInfoFromInfoForm(ContactData contact) {
         return Arrays.asList(contact.getAllInfo())
                 .stream().filter((s) -> s != null && !s.equals(""))
-                .map(ContactPhoneTest::cleaned)
                 .collect(Collectors.joining("\n"));
     }
 
     public  static String cleaned(String phone){
-        return phone.replaceAll("\\s","").replaceAll("\n","");
+        return phone.replaceAll("\\s"," ").replaceAll("  "," ");
     }
 }
