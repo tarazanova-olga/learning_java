@@ -104,6 +104,23 @@ public class ContactData {
         return this;
     }
 
+    @Override
+    public String toString() {
+        return "ContactData{" +
+                "name='" + name + '\'' +
+                ", middleName='" + middleName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", homePhone='" + homePhone + '\'' +
+                ", mobilePhone='" + mobilePhone + '\'' +
+                ", workPhone='" + workPhone + '\'' +
+                ", email='" + email + '\'' +
+                ", email2='" + email2 + '\'' +
+                ", email3='" + email3 + '\'' +
+                ", address='" + address + '\'' +
+                ", contactId=" + contactId +
+                '}';
+    }
+
     public String getName() {
         return name;
     }
@@ -153,13 +170,6 @@ public class ContactData {
     public String getAllInfo() {return allInfo;}
 
     public File getPhoto() {return photo;}
-    @Override
-    public String toString() {
-        return "ContactData{" +
-                "nameContact='" + name + '\'' +
-                ", lastNameContact='" + lastName + '\'' +
-                '}';
-    }
 
     @Override
     public boolean equals(Object o) {

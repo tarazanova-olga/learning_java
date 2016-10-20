@@ -1,6 +1,5 @@
 package my.learning_java.addressbook.generators;
 
-import com.sun.javafx.tools.packager.PackagerException;
 import gw.internal.ext.com.beust.jcommander.JCommander;
 import gw.internal.ext.com.beust.jcommander.Parameter;
 import gw.internal.ext.com.beust.jcommander.ParameterException;
