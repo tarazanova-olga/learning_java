@@ -110,14 +110,6 @@ public class ContactData {
                 "name='" + name + '\'' +
                 ", middleName='" + middleName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", homePhone='" + homePhone + '\'' +
-                ", mobilePhone='" + mobilePhone + '\'' +
-                ", workPhone='" + workPhone + '\'' +
-                ", email='" + email + '\'' +
-                ", email2='" + email2 + '\'' +
-                ", email3='" + email3 + '\'' +
-                ", address='" + address + '\'' +
-                ", contactId=" + contactId +
                 '}';
     }
 

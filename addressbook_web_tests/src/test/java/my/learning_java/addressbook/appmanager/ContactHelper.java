@@ -27,7 +27,7 @@ public class ContactHelper extends BaseHelper {
         type(By.name("lastname"), contactData.getLastName());
         type(By.name("address"), contactData.getAddress());
         type(By.name("home"), contactData.getHomePhone());
-//        type(By.name("mobile"), contactData.getMobilePhone());
+        type(By.name("mobile"), contactData.getMobilePhone());
         type(By.name("work"), contactData.getWorkPhone());
         type(By.name("email"), contactData.getEmail());
         type(By.name("email2"), contactData.getEmail2());

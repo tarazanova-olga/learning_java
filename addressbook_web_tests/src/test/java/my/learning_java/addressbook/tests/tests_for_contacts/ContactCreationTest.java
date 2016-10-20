@@ -2,7 +2,6 @@ package my.learning_java.addressbook.tests.tests_for_contacts;
 
 import my.learning_java.addressbook.model.ContactData;
 import my.learning_java.addressbook.model.Contacts;
-import my.learning_java.addressbook.model.GroupData;
 import my.learning_java.addressbook.tests.TestBase;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -20,21 +19,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactCreationTest extends TestBase{
 
-   @DataProvider
-    public Iterator<Object[]> validContacts(){
-        List<Object[]> list = new ArrayList<Object[]>();
-        File photo = new File("src/test/resources/ленин.jpg");
-        list.add(new Object[] {new ContactData().withName("Иван").withMiddleName("Иванович").withLastName("Иванов").withHomePhone("89651231123")
-                .withEmail("test@test.test").withAddress("ул. Мира, д.123").withPhoto(photo)});
-        list.add(new Object[] {new ContactData().withName("Иван").withMiddleName("Иванович").withLastName("Иванов").withHomePhone("89651231123")
-                .withEmail("test@test.test").withAddress("ул. Мира, д.123").withPhoto(photo)});
-        list.add(new Object[] {new ContactData().withName("Иван").withMiddleName("Иванович").withLastName("Иванов").withHomePhone("89651231123")
-                .withEmail("test@test.test").withAddress("ул. Мира, д.123").withPhoto(photo)});
-        return list.iterator();
-    }
-
-
-/*   @DataProvider
+    @DataProvider
     public Iterator<Object[]> validContacts() throws IOException {
         List<Object[]> list = new ArrayList<Object[]>();
         BufferedReader reader = new BufferedReader(new FileReader("src/test/resources/contacts.csv"));
@@ -42,12 +27,14 @@ public class ContactCreationTest extends TestBase{
         while (line != null){
             String[] split = line.split(";");
             list.add(new Object[]{ new ContactData().withName(split[0]).withMiddleName(split[1]).withLastName(split[2])
-                    .withHomePhone(split[3]).withEmail(split[4]).withAddress(split[5])});
+                    .withHomePhone(split[3]).withMobilePhone(split[4]).withWorkPhone(split[5])
+                    .withEmail(split[6]).withEmail2(split[7]).withEmail3(split[8])
+                    .withAddress(split[9])});
             line = reader.readLine();
         }
         return list.iterator();
     }
-*/
+
     @Test(dataProvider = "validContacts")
     public void testContactCreationTest(ContactData contact) {
         app.goTo().HomePage();
