@@ -1,10 +1,16 @@
 package my.learning_java.addressbook.model;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
+
+@XStreamAlias("group")
+
 
 public class GroupData {
     private String nameGroup;
     private String groupHeader;
     private String groupFooter;
+    @XStreamOmitField
     private int groupId = Integer.MAX_VALUE;
 
 

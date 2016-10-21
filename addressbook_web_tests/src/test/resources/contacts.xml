@@ -1,0 +1,38 @@
+<list>
+  <contacts>
+    <name>Иван0</name>
+    <middleName>Иванович</middleName>
+    <lastName>Иванов</lastName>
+    <homePhone>1230</homePhone>
+    <mobilePhone>2330</mobilePhone>
+    <workPhone>7650</workPhone>
+    <email>test0@test.test</email>
+    <email2>2test0@test.test</email2>
+    <email3>3test0@test.test</email3>
+    <address>ул.Мира, д45</address>
+  </contacts>
+  <contacts>
+    <name>Иван1</name>
+    <middleName>Иванович</middleName>
+    <lastName>Иванов</lastName>
+    <homePhone>1231</homePhone>
+    <mobilePhone>2331</mobilePhone>
+    <workPhone>7651</workPhone>
+    <email>test1@test.test</email>
+    <email2>2test1@test.test</email2>
+    <email3>3test1@test.test</email3>
+    <address>ул.Мира, д45</address>
+  </contacts>
+  <contacts>
+    <name>Иван2</name>
+    <middleName>Иванович</middleName>
+    <lastName>Иванов</lastName>
+    <homePhone>1232</homePhone>
+    <mobilePhone>2332</mobilePhone>
+    <workPhone>7652</workPhone>
+    <email>test2@test.test</email>
+    <email2>2test2@test.test</email2>
+    <email3>3test2@test.test</email3>
+    <address>ул.Мира, д45</address>
+  </contacts>
+</list>

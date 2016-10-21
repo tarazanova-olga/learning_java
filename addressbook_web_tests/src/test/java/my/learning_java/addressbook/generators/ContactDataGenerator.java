@@ -1,9 +1,11 @@
 package my.learning_java.addressbook.generators;
 
+import com.thoughtworks.xstream.XStream;
 import gw.internal.ext.com.beust.jcommander.JCommander;
 import gw.internal.ext.com.beust.jcommander.Parameter;
 import gw.internal.ext.com.beust.jcommander.ParameterException;
 import my.learning_java.addressbook.model.ContactData;
+import my.learning_java.addressbook.model.GroupData;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -20,6 +22,9 @@ public class ContactDataGenerator {
     @Parameter(names = "-f", description = "Target file")
     public String file; //тип String так как jcommander не поддерживает тип File
 
+    @Parameter(names = "-d", description = "Data format")
+    public String format;
+
     public static void main(String[] args) throws IOException {
         ContactDataGenerator generator = new ContactDataGenerator();
         JCommander jCommander = new JCommander(generator);
@@ -35,10 +40,25 @@ public class ContactDataGenerator {
     private void run() throws IOException {
         //генерация данных и сохранение их в файл
         List<ContactData> contacts = generateContacts(count);
-        save(contacts, new File(file));
+        if (format.equals("csv")){
+            saveAsCSV(contacts, new File(file));
+        } else if (format.equals("xml")){
+            saveAsXML(contacts, new File(file));
+        } else{
+            System.out.println("Unrecognized format" + format);
+        }
     }
 
-    private void save(List<ContactData> contacts, File file) throws IOException {
+    private void saveAsXML(List<ContactData> contacts, File file) throws IOException {
+        XStream xstream = new XStream();
+        xstream.processAnnotations(ContactData.class);
+        String xml = xstream.toXML(contacts);
+        Writer writer = new FileWriter(file);
+        writer.write(xml);
+        writer.close();
+    }
+
+    private void saveAsCSV(List<ContactData> contacts, File file) throws IOException {
      //   System.out.println(new File(".").getAbsolutePath());
         Writer writer = new FileWriter(file);
         for (ContactData contact : contacts) {

@@ -1,5 +1,6 @@
 package my.learning_java.addressbook.tests.tests_for_groups;
 
+import com.thoughtworks.xstream.XStream;
 import my.learning_java.addressbook.model.GroupData;
 import my.learning_java.addressbook.model.Groups;
 import my.learning_java.addressbook.tests.TestBase;
@@ -10,6 +11,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -17,7 +19,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class GroupCreationTest extends TestBase {
 
-    @DataProvider
+/*    @DataProvider //реализация провайдера для чтения данных из файла формата csv
     public Iterator<Object[]> validGroups() throws IOException {
         List<Object[]> list = new ArrayList<Object[]>();
         BufferedReader reader = new BufferedReader(new FileReader("src/test/resources/groups.csv"));
@@ -28,6 +30,22 @@ public class GroupCreationTest extends TestBase {
             line = reader.readLine();
         }
         return list.iterator();
+    }
+*/
+
+    @DataProvider
+    public Iterator<Object[]> validGroups() throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader("src/test/resources/groups.xml"));
+        String xml = "";
+        String line = reader.readLine();
+        while (line != null){
+            xml += line;
+            line = reader.readLine();
+        }
+        XStream xstream = new XStream();
+        xstream.processAnnotations(GroupData.class);
+        List<GroupData> groups = (List<GroupData>) xstream.fromXML(xml);
+        return groups.stream().map((g) -> new Object[]{g}).collect(Collectors.toList()).iterator();
     }
 
     @Test(dataProvider = "validGroups")

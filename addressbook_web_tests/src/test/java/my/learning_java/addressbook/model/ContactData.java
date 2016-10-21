@@ -1,6 +1,11 @@
 package my.learning_java.addressbook.model;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
+
 import java.io.File;
+
+@XStreamAlias("contacts")
 
 public class ContactData {
     private String name;
@@ -14,6 +19,7 @@ public class ContactData {
     private String email3;
     private String address;
     private String group;
+    @XStreamOmitField
     private int contactId = Integer.MAX_VALUE;
     private String allPhones;
     private String allEmails;
