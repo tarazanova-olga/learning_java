@@ -1,5 +1,7 @@
 package my.learning_java.addressbook.generators;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.thoughtworks.xstream.XStream;
 import gw.internal.ext.com.beust.jcommander.JCommander;
 import gw.internal.ext.com.beust.jcommander.Parameter;
@@ -40,13 +42,23 @@ public class ContactDataGenerator {
     private void run() throws IOException {
         //генерация данных и сохранение их в файл
         List<ContactData> contacts = generateContacts(count);
-        if (format.equals("csv")){
+        if (format.equals("csv")) {
             saveAsCSV(contacts, new File(file));
-        } else if (format.equals("xml")){
+        } else if (format.equals("xml")) {
             saveAsXML(contacts, new File(file));
-        } else{
+        } else if (format.equals("json")) {
+            saveAsJSON(contacts, new File(file));
+        } else {
             System.out.println("Unrecognized format" + format);
         }
+    }
+
+    private void saveAsJSON(List<ContactData> groups, File file) throws IOException {
+        Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
+        String json = gson.toJson(groups);
+        Writer writer = new FileWriter(file);
+        writer.write(json);
+        writer.close();
     }
 
     private void saveAsXML(List<ContactData> contacts, File file) throws IOException {

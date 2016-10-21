@@ -1,8 +1,11 @@
 package my.learning_java.addressbook.tests.tests_for_contacts;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.thoughtworks.xstream.XStream;
 import my.learning_java.addressbook.model.ContactData;
 import my.learning_java.addressbook.model.Contacts;
+import my.learning_java.addressbook.model.GroupData;
 import my.learning_java.addressbook.tests.TestBase;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -21,8 +24,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactCreationTest extends TestBase{
 
-/*    @DataProvider //реализация провайдера для чтения данных из файла формата csv
-    public Iterator<Object[]> validContacts() throws IOException {
+    @DataProvider //реализация провайдера для чтения данных из файла формата csv
+    public Iterator<Object[]> validContactsFromCSV() throws IOException {
         List<Object[]> list = new ArrayList<Object[]>();
         BufferedReader reader = new BufferedReader(new FileReader("src/test/resources/contacts.csv"));
         String line = reader.readLine();
@@ -36,10 +39,10 @@ public class ContactCreationTest extends TestBase{
         }
         return list.iterator();
     }
-*/
+
 
     @DataProvider
-    public Iterator<Object[]> validContacts() throws IOException {
+    public Iterator<Object[]> validContactsFromXML() throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader("src/test/resources/contacts.xml"));
         String xml = "";
         String line = reader.readLine();
@@ -53,7 +56,21 @@ public class ContactCreationTest extends TestBase{
         return groups.stream().map((g) -> new Object[]{g}).collect(Collectors.toList()).iterator();
     }
 
-    @Test(dataProvider = "validContacts")
+    @DataProvider
+    public Iterator<Object[]> validContactsFromJSON() throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader("src/test/resources/contacts.json"));
+        String json = "";
+        String line = reader.readLine();
+        while (line != null){
+            json += line;
+            line = reader.readLine();
+        }
+        Gson gson = new Gson();
+        List<ContactData> contacts = gson.fromJson(json, new TypeToken<List<ContactData>>(){}.getType()); // аналогия List<ContactData>.class
+        return contacts.stream().map((g) -> new Object[]{g}).collect(Collectors.toList()).iterator();
+    }
+
+    @Test(dataProvider = "validContactsFromJSON")
     public void testContactCreationTest(ContactData contact) {
         app.goTo().HomePage();
         Contacts before =  app.contact().all();

@@ -1,0 +1,12 @@
+[
+  {
+    "nameGroup": "test 0",
+    "groupHeader": "header 0",
+    "groupFooter": "footer 0"
+  },
+  {
+    "nameGroup": "test 1",
+    "groupHeader": "header 1",
+    "groupFooter": "footer 1"
+  }
+]

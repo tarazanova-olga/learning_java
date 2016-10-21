@@ -1,5 +1,6 @@
 package my.learning_java.addressbook.model;
 
+import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 
@@ -7,8 +8,11 @@ import com.thoughtworks.xstream.annotations.XStreamOmitField;
 
 
 public class GroupData {
+    @Expose
     private String nameGroup;
+    @Expose
     private String groupHeader;
+    @Expose
     private String groupFooter;
     @XStreamOmitField
     private int groupId = Integer.MAX_VALUE;
