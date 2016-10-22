@@ -1,3 +1,5 @@
+import com.sun.javafx.runtime.SystemProperties
+
 apply plugin: 'java'
 
 
@@ -15,3 +17,26 @@ dependencies
      compile 'com.thoughtworks.xstream:xstream:1.4.9'
      compile 'com.google.code.gson:gson:2.7'
  }
+
+task testContacts(type: Test) { //для очищения данных о запуске теста из консоли - cleanTest
+    useTestNG() {
+        suites 'src/test/resources/testng-contacts.xml'
+    }
+    if (project.hasProperty('browser')){
+            systemProperty 'browser', "${browser}"
+    }
+    if (project.hasProperty('target')){
+        systemProperty 'target', "${target}"
+    }
+}
+task testGroups(type: Test) { //для указания браузера запуска из консоли: -Pbrowser=chrome
+    useTestNG(){
+        suites 'src/test/resources/testng-groups.xml'
+    }
+    if (project.hasProperty('browser')){
+        systemProperty 'browser', "${browser}"
+    }
+    if (project.hasProperty('target')){
+        systemProperty 'target', "${target}"
+    }
+}
