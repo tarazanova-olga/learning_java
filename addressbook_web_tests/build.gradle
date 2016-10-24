@@ -17,6 +17,7 @@ dependencies
      compile 'com.thoughtworks.xstream:xstream:1.4.9'
      compile 'com.google.code.gson:gson:2.7'
      compile 'ch.qos.logback:logback-classic:1.1.7'
+     compile 'mysql:mysql-connector-java:6.0.5'
  }
 
 task testContacts(type: Test) { //для очищения данных о запуске теста из консоли - cleanTest
