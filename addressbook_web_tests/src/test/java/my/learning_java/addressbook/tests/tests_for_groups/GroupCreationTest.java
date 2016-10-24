@@ -6,6 +6,8 @@ import com.thoughtworks.xstream.XStream;
 import my.learning_java.addressbook.model.GroupData;
 import my.learning_java.addressbook.model.Groups;
 import my.learning_java.addressbook.tests.TestBase;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
