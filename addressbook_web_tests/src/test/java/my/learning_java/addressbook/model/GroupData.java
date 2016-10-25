@@ -3,18 +3,32 @@ package my.learning_java.addressbook.model;
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.Table;
+import org.hibernate.annotations.Type;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @XStreamAlias("group")
-
+@Entity
+@javax.persistence.Table(name = "group_list")
 
 public class GroupData {
-    @Expose
+    @Expose //для указания, какие параметры нужны в json
+    @Column(name="group_name")
     private String nameGroup;
     @Expose
+    @Column(name="group_header")
+    @Type(type = "text")
     private String groupHeader;
     @Expose
+    @Column(name="group_footer")
+    @Type(type = "text") //явное указание типа столбца
     private String groupFooter;
-    @XStreamOmitField
+    @XStreamOmitField // для указания, что нам не нужно в xml
+    @Id
+    @Column(name="group_id")
     private int groupId = Integer.MAX_VALUE;
 
 
