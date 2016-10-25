@@ -3,43 +3,77 @@ package my.learning_java.addressbook.model;
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.io.File;
 
 @XStreamAlias("contacts")
+@Entity
+@javax.persistence.Table(name = "addressbook")
 
 public class ContactData {
     @Expose
+    @Column(name="firstname")
+
     private String name;
     @Expose
+    @Column(name="middlename")
+
     private String middleName;
     @Expose
+    @Column(name="lastname")
+
     private String lastName;
     @Expose
+    @Type(type = "text")
+    @Column(name="home")
     private String homePhone;
     @Expose
+    @Column(name="mobile")
+    @Type(type = "text")
     private String mobilePhone;
     @Expose
+    @Column(name="work")
+    @Type(type = "text")
     private String workPhone;
     @Expose
+    @Type(type = "text")
+    @Column(name="email")
     private String email;
     @Expose
+    @Type(type = "text")
+    @Column(name="email2")
     private String email2;
     @Expose
+    @Type(type = "text")
+    @Column(name="email3")
     private String email3;
     @Expose
+    @Column(name="address")
+    @Type(type = "text")
     private String address;
+    @Transient
     @Expose
     private String group;
     @XStreamOmitField
+    @Id
+    @Column(name="id")
     private int contactId = Integer.MAX_VALUE;
     @Expose
+    @Transient
     private String allPhones;
     @Expose
+    @Transient
     private String allEmails;
     @Expose
+    @Transient
     private String allInfo;
     @Expose
+    @Transient
     private File photo;
 
     public ContactData() {

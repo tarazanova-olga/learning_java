@@ -11,7 +11,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import java.util.List;
 
-public class HbConnectionTest {
+public class HbConnectionGroupsTest {
 
     private SessionFactory sessionFactory;
 
