@@ -2,6 +2,7 @@ package my.learning_java.addressbook.model;
 
 
 import com.google.common.collect.ForwardingSet;
+import my.learning_java.addressbook.model.db_model.GroupDataDB;
 
 import java.util.HashSet;
 import java.util.Set;

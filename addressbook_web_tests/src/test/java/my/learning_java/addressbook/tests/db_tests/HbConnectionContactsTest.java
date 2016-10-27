@@ -1,7 +1,7 @@
 package my.learning_java.addressbook.tests.db_tests;
 
 
-import my.learning_java.addressbook.model.ContactData;
+import my.learning_java.addressbook.model.db_model.ContactDataDB;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
@@ -37,8 +37,8 @@ public class HbConnectionContactsTest {
     public void testHbConnection() {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        List<ContactData> result = session.createQuery("from ContactData where deprecated = '0000-00-00'").list();
-        for (ContactData contact : result) {
+        List<ContactDataDB> result = session.createQuery("from ContactDataDB where deprecated = '0000-00-00'").list();
+        for (ContactDataDB contact : result) {
             System.out.println(contact);
         }
         session.getTransaction().commit();

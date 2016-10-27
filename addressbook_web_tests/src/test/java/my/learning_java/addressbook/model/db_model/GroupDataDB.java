@@ -1,9 +1,8 @@
-package my.learning_java.addressbook.model;
+package my.learning_java.addressbook.model.db_model;
 
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
-import org.hibernate.annotations.Table;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.Column;
@@ -11,16 +10,24 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @XStreamAlias("group")
+@Entity
+@javax.persistence.Table(name = "group_list")
 
-
-public class GroupData {
+public class GroupDataDB {
     @Expose //для указания, какие параметры нужны в json
+    @Column(name="group_name")
     private String nameGroup;
     @Expose
+    @Column(name="group_header")
+    @Type(type = "text")
     private String groupHeader;
     @Expose
+    @Column(name="group_footer")
+    @Type(type = "text") //явное указание типа столбца
     private String groupFooter;
     @XStreamOmitField // для указания, что нам не нужно в xml
+    @Id
+    @Column(name="group_id")
     private int groupId = Integer.MAX_VALUE;
 
 
@@ -38,7 +45,7 @@ public class GroupData {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        GroupData groupData = (GroupData) o;
+        GroupDataDB groupData = (GroupDataDB) o;
 
         if (groupId != groupData.groupId) return false;
         return nameGroup != null ? nameGroup.equals(groupData.nameGroup) : groupData.nameGroup == null;
@@ -60,22 +67,22 @@ public class GroupData {
         return groupFooter;
     }
 
-    public GroupData withName(String nameGroup) {
+    public GroupDataDB withName(String nameGroup) {
         this.nameGroup = nameGroup;
         return this;
     }
 
-    public GroupData withHeader(String groupHeader) {
+    public GroupDataDB withHeader(String groupHeader) {
         this.groupHeader = groupHeader;
         return this;
     }
 
-    public GroupData withFooter(String groupFooter) {
+    public GroupDataDB withFooter(String groupFooter) {
         this.groupFooter = groupFooter;
         return this;
     }
 
-    public GroupData withId(int groupId) {
+    public GroupDataDB withId(int groupId) {
         this.groupId = groupId;
         return this;
     }

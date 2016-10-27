@@ -20,9 +20,11 @@ public class ApplicationManager {
     WebDriver wd;
 
     public ContactHelper contactHelper;
+    public ContactHelperDB contactHelperDB;
     public SessionHelper sessionHelper;
     public NavigationHelper navigationHelper;
     public GroupHelper groupHelper;
+    public GroupHelperDB groupHelperDB;
     public String browser;
 
     public ApplicationManager(String browser){
@@ -46,8 +48,10 @@ public class ApplicationManager {
         wd.get(properties.getProperty("web.baseURL"));
         sessionHelper = new SessionHelper(wd);
         groupHelper = new GroupHelper(wd);
+        groupHelperDB = new GroupHelperDB(wd);
         navigationHelper = new NavigationHelper(wd);
         contactHelper = new ContactHelper(wd);
+        contactHelperDB = new ContactHelperDB(wd);
         sessionHelper.login(properties.getProperty("web.adminLogin"),properties.getProperty("web.adminPassword"));
     }
 
@@ -61,6 +65,10 @@ public class ApplicationManager {
         return groupHelper;
     }
 
+    public GroupHelperDB groupDB() {
+        return groupHelperDB;
+    }
+
     public NavigationHelper goTo() {
         return navigationHelper;
     }
@@ -68,5 +76,7 @@ public class ApplicationManager {
     public ContactHelper contact() {
         return contactHelper;
     }
+
+    public ContactHelperDB contactDB() {return contactHelperDB;}
 
 }

@@ -1,7 +1,7 @@
 package my.learning_java.addressbook.tests.db_tests;
 
 
-import my.learning_java.addressbook.model.GroupData;
+import my.learning_java.addressbook.model.db_model.GroupDataDB;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
@@ -36,8 +36,8 @@ public class HbConnectionGroupsTest {
     public void testHbConnection() {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        List<GroupData> result = session.createQuery("from GroupData").list();
-        for (GroupData group : result) {
+        List<GroupDataDB> result = session.createQuery("from GroupDataDB").list();
+        for (GroupDataDB group : result) {
             System.out.println(group);
         }
         session.getTransaction().commit();

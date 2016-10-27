@@ -1,127 +1,161 @@
-package my.learning_java.addressbook.model;
+package my.learning_java.addressbook.model.db_model;
 
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.io.File;
 
 @XStreamAlias("contacts")
+@Entity
+@javax.persistence.Table(name = "addressbook")
 
-public class ContactData {
+public class ContactDataDB {
     @Expose
+    @Column(name="firstname")
+
     private String name;
     @Expose
+    @Column(name="middlename")
+
     private String middleName;
     @Expose
+    @Column(name="lastname")
+
     private String lastName;
     @Expose
+    @Type(type = "text")
+    @Column(name="home")
     private String homePhone;
     @Expose
+    @Column(name="mobile")
+    @Type(type = "text")
     private String mobilePhone;
     @Expose
+    @Column(name="work")
+    @Type(type = "text")
     private String workPhone;
     @Expose
+    @Type(type = "text")
+    @Column(name="email")
     private String email;
     @Expose
+    @Type(type = "text")
+    @Column(name="email2")
     private String email2;
     @Expose
+    @Type(type = "text")
+    @Column(name="email3")
     private String email3;
     @Expose
+    @Column(name="address")
+    @Type(type = "text")
     private String address;
+    @Transient
     @Expose
     private String group;
     @XStreamOmitField
+    @Id
+    @Column(name="id")
     private int contactId = Integer.MAX_VALUE;
     @Expose
+    @Transient
     private String allPhones;
     @Expose
+    @Transient
     private String allEmails;
     @Expose
+    @Transient
     private String allInfo;
     @Expose
+    @Transient
     private File photo;
 
-    public ContactData() {
+    public ContactDataDB() {
     }
 
-    public ContactData withName(String nameContact) {
+    public ContactDataDB withName(String nameContact) {
         this.name = nameContact;
         return this;
     }
 
-    public ContactData withMiddleName(String middleNameContact) {
+    public ContactDataDB withMiddleName(String middleNameContact) {
         this.middleName = middleNameContact;
         return this;
     }
 
-    public ContactData withLastName(String lastNameContact) {
+    public ContactDataDB withLastName(String lastNameContact) {
         this.lastName = lastNameContact;
         return this;
     }
 
-    public ContactData withHomePhone(String homePhone) {
+    public ContactDataDB withHomePhone(String homePhone) {
         this.homePhone = homePhone;
         return this;
     }
 
-    public ContactData withMobilePhone(String mobilePhone) {
+    public ContactDataDB withMobilePhone(String mobilePhone) {
         this.mobilePhone = mobilePhone;
         return this;
     }
 
 
-    public ContactData withWorkPhone(String workPhone) {
+    public ContactDataDB withWorkPhone(String workPhone) {
         this.workPhone = workPhone;
         return this;
     }
 
-    public ContactData withAllPhones(String allPhones) {
+    public ContactDataDB withAllPhones(String allPhones) {
         this.allPhones = allPhones;
         return this;
     }
 
-    public ContactData withEmail(String emailContact) {
+    public ContactDataDB withEmail(String emailContact) {
         this.email = emailContact;
         return this;
     }
 
-    public ContactData withEmail2(String email2) {
+    public ContactDataDB withEmail2(String email2) {
         this.email2 = email2;
         return this;
     }
 
-    public ContactData withEmail3(String email3) {
+    public ContactDataDB withEmail3(String email3) {
         this.email3 = email3;
         return this;
     }
 
-    public ContactData withAllEmails(String allEmails) {
+    public ContactDataDB withAllEmails(String allEmails) {
         this.allEmails = allEmails;
         return this;
     }
 
-    public ContactData withAddress(String addressContact) {
+    public ContactDataDB withAddress(String addressContact) {
         this.address = addressContact;
         return this;
     }
 
-    public ContactData withGroup(String group) {
+    public ContactDataDB withGroup(String group) {
         this.group = group;
         return this;
     }
 
-    public ContactData withId(int contactId) {
+    public ContactDataDB withId(int contactId) {
         this.contactId = contactId;
         return this;
     }
 
-    public ContactData withAllInfo(String allInfo) {
+    public ContactDataDB withAllInfo(String allInfo) {
         this.allInfo = allInfo;
         return this;
     }
 
-    public ContactData withPhoto(File photo) {
+    public ContactDataDB withPhoto(File photo) {
         this.photo = photo;
         return this;
     }
@@ -190,7 +224,7 @@ public class ContactData {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        ContactData that = (ContactData) o;
+        ContactDataDB that = (ContactDataDB) o;
 
         if (contactId != that.contactId) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;

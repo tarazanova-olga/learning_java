@@ -1,8 +1,8 @@
 package my.learning_java.addressbook.tests.db_tests;
 
 
-import my.learning_java.addressbook.model.GroupData;
-import my.learning_java.addressbook.model.Groups;
+import my.learning_java.addressbook.model.db_model.GroupDataDB;
+import my.learning_java.addressbook.model.db_model.GroupsDB;
 import org.testng.annotations.Test;
 
 import java.sql.*;
@@ -17,9 +17,9 @@ public class DbConnectionTest {
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/addressbook?serverTimezone=UTC&user=root&password=");
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("select group_id,group_name,group_header,group_footer from group_list");
-            Groups groups = new Groups();
+            GroupsDB groups = new GroupsDB();
             while (rs.next()){
-                groups.add(new GroupData().withId(rs.getInt("group_id")).withName(rs.getString("group_name")).withHeader(rs.getString("group_header"))
+                groups.add(new GroupDataDB().withId(rs.getInt("group_id")).withName(rs.getString("group_name")).withHeader(rs.getString("group_header"))
                         .withFooter(rs.getString("group_footer")));
             }
             rs.close();
