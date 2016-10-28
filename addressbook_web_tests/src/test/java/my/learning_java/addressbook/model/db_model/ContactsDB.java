@@ -4,8 +4,7 @@ package my.learning_java.addressbook.model.db_model;
 import com.google.common.collect.ForwardingSet;
 
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 //создание расширенных коллекций
 public class ContactsDB extends ForwardingSet <ContactDataDB> {
@@ -18,6 +17,10 @@ public class ContactsDB extends ForwardingSet <ContactDataDB> {
 
     public ContactsDB() {
         this.delegate = new HashSet<ContactDataDB>();
+    }
+
+    public ContactsDB(Collection<ContactDataDB> contacts) {
+        this.delegate = new HashSet<ContactDataDB>(contacts);
     }
 
     @Override

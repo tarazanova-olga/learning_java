@@ -10,7 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @XStreamAlias("group")
-@Entity
+@Entity //связь с БД
 @javax.persistence.Table(name = "group_list")
 
 public class GroupDataDB {
@@ -38,25 +38,6 @@ public class GroupDataDB {
     public String getName() {
 
         return nameGroup;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        GroupDataDB groupData = (GroupDataDB) o;
-
-        if (groupId != groupData.groupId) return false;
-        return nameGroup != null ? nameGroup.equals(groupData.nameGroup) : groupData.nameGroup == null;
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = nameGroup != null ? nameGroup.hashCode() : 0;
-        result = 31 * result + groupId;
-        return result;
     }
 
     public String getGroupHeader() {
@@ -95,4 +76,26 @@ public class GroupDataDB {
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        GroupDataDB that = (GroupDataDB) o;
+
+        if (groupId != that.groupId) return false;
+        if (nameGroup != null ? !nameGroup.equals(that.nameGroup) : that.nameGroup != null) return false;
+        if (groupHeader != null ? !groupHeader.equals(that.groupHeader) : that.groupHeader != null) return false;
+        return groupFooter != null ? groupFooter.equals(that.groupFooter) : that.groupFooter == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = nameGroup != null ? nameGroup.hashCode() : 0;
+        result = 31 * result + (groupHeader != null ? groupHeader.hashCode() : 0);
+        result = 31 * result + (groupFooter != null ? groupFooter.hashCode() : 0);
+        result = 31 * result + groupId;
+        return result;
+    }
 }

@@ -213,12 +213,6 @@ public class ContactDataDB {
 
     public String getAllPhones() {return allPhones;}
 
-    public String getAllEmails() {return allEmails;}
-
-    public String getAllInfo() {return allInfo;}
-
-    public File getPhoto() {return photo;}
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -228,20 +222,27 @@ public class ContactDataDB {
 
         if (contactId != that.contactId) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        return lastName != null ? lastName.equals(that.lastName) : that.lastName == null;
+        if (middleName != null ? !middleName.equals(that.middleName) : that.middleName != null) return false;
+        if (lastName != null ? !lastName.equals(that.lastName) : that.lastName != null) return false;
+        return address != null ? address.equals(that.address) : that.address == null;
 
     }
 
     @Override
     public int hashCode() {
         int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (middleName != null ? middleName.hashCode() : 0);
         result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+        result = 31 * result + (address != null ? address.hashCode() : 0);
         result = 31 * result + contactId;
         return result;
     }
 
+    public String getAllEmails() {return allEmails;}
 
+    public String getAllInfo() {return allInfo;}
 
+    public File getPhoto() {return photo;}
 
 }
 

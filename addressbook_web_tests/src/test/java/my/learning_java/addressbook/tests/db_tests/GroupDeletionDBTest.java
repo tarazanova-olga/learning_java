@@ -14,19 +14,20 @@ public class GroupDeletionDBTest extends TestBase {
 
     @BeforeMethod
     public  void ensurePrecondition() {
-        app.goTo().GroupPage();
-        if (app.groupDB().all().size() == 0) {
-            app.groupDB().create(new GroupDataDB().withName("test2").withFooter("null").withHeader("null"));
+        if (app.db().groups().size() == 0) {
+            app.goTo().GroupPage();
+            app.groupDB().create(new GroupDataDB().withName("test1").withHeader(null).withFooter(null));
         }
     }
 
     @Test
     public void testGroupDeletionTest() {
-        GroupsDB before = app.groupDB().all();
+        GroupsDB before = app.db().groups();
+        app.goTo().GroupPage();
         GroupDataDB deletedGroup = before.iterator().next();
         app.groupDB().delete(deletedGroup);
         assertThat(app.group().count(), equalTo(before.size() - 1));
-        GroupsDB after = app.groupDB().all();
+        GroupsDB after = app.db().groups();
         assertEquals(after.size(), before.size() - 1);
         assertThat(after, equalTo(before.withOut(deletedGroup)));
     }

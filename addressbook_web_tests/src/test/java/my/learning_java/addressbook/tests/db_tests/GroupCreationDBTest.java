@@ -23,37 +23,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class GroupCreationDBTest extends TestBase {
 
-    @DataProvider //реализация провайдера для чтения данных из файла формата csv
-    public Iterator<Object[]> validGroupsFromCSV() throws IOException {
-        List<Object[]> list = new ArrayList<Object[]>();
-        try(BufferedReader reader = new BufferedReader(new FileReader("src/test/resources/groups.csv"))){
-            String line = reader.readLine();
-            while (line != null){
-                String[] split = line.split(";");
-                list.add(new Object[]{ new GroupDataDB().withName(split[0]).withHeader(split[1]).withFooter(split[2])});
-                line = reader.readLine();
-            }
-            return list.iterator();
-        }
-    }
-
-
-    @DataProvider
-    public Iterator<Object[]> validGroupsFromXML() throws IOException {
-        try(BufferedReader reader = new BufferedReader(new FileReader("src/test/resources/groups.xml"));){
-            String xml = "";
-            String line = reader.readLine();
-            while (line != null){
-                xml += line;
-                line = reader.readLine();
-            }
-            XStream xstream = new XStream();
-            xstream.processAnnotations(GroupDataDB.class);
-            List<GroupDataDB> groups = (List<GroupDataDB>) xstream.fromXML(xml);
-            return groups.stream().map((g) -> new Object[]{g}).collect(Collectors.toList()).iterator();
-        }
-    }
-
     @DataProvider
     public Iterator<Object[]> validGroupsFromJSON() throws IOException {
         try(BufferedReader reader = new BufferedReader(new FileReader("src/test/resources/groups.json"));){
@@ -73,24 +42,14 @@ public class GroupCreationDBTest extends TestBase {
     @Test(dataProvider = "validGroupsFromJSON")
     public void testGroupCreationTest(GroupDataDB group) {
         app.goTo().GroupPage();
-        GroupsDB before = app.groupDB().all();
+        GroupsDB before = app.db().groups();
         app.groupDB().create(group);
         assertThat(app.group().count(), equalTo(before.size() + 1));
-        GroupsDB after = app.groupDB().all();
+        GroupsDB after = app.db().groups();
         assertThat(after.size(), equalTo(before.size() + 1));
 
         assertThat(after, equalTo
                 (before.withAdded(group.withId(after.stream().mapToInt((g) -> g.getGroupId()).max().getAsInt()))));
     }
 
-    @Test
-    public void testBadGroupCreationTest() {
-        app.goTo().GroupPage();
-        GroupsDB before = app.groupDB().all();
-        GroupDataDB group = new GroupDataDB().withName("test'").withFooter("123").withHeader("987");
-        app.groupDB().create(group);
-        assertThat(app.group().count(), equalTo(before.size()));
-        GroupsDB after = app.groupDB().all();
-        assertThat(after, equalTo(before));
-    }
 }

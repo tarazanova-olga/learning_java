@@ -3,7 +3,9 @@ package my.learning_java.addressbook.model.db_model;
 
 import com.google.common.collect.ForwardingSet;
 
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 //создание расширенных коллекций
@@ -17,6 +19,10 @@ public class GroupsDB extends ForwardingSet <GroupDataDB> {
 
     public GroupsDB() {
         this.delegate = new HashSet<GroupDataDB>();
+    }
+
+    public GroupsDB(Collection<GroupDataDB> groups) {
+        this.delegate = new HashSet<GroupDataDB>(groups);
     }
 
     @Override
