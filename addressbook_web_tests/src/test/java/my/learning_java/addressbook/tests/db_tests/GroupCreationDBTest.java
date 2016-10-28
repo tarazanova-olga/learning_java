@@ -25,15 +25,16 @@ public class GroupCreationDBTest extends TestBase {
 
     @DataProvider
     public Iterator<Object[]> validGroupsFromJSON() throws IOException {
-        try(BufferedReader reader = new BufferedReader(new FileReader("src/test/resources/groups.json"));){
+        try (BufferedReader reader = new BufferedReader(new FileReader("src/test/resources/groups.json"));) {
             String json = "";
             String line = reader.readLine();
-            while (line != null){
+            while (line != null) {
                 json += line;
                 line = reader.readLine();
             }
             Gson gson = new Gson();
-            List<GroupDataDB> groups = gson.fromJson(json, new TypeToken<List<GroupDataDB>>(){}.getType()); // аналогия List<GroupData>.class
+            List<GroupDataDB> groups = gson.fromJson(json, new TypeToken<List<GroupDataDB>>() {
+            }.getType()); // аналогия List<GroupData>.class
             return groups.stream().map((g) -> new Object[]{g}).collect(Collectors.toList()).iterator();
         }
     }
@@ -47,9 +48,8 @@ public class GroupCreationDBTest extends TestBase {
         assertThat(app.group().count(), equalTo(before.size() + 1));
         GroupsDB after = app.db().groups();
         assertThat(after.size(), equalTo(before.size() + 1));
-
         assertThat(after, equalTo
                 (before.withAdded(group.withId(after.stream().mapToInt((g) -> g.getGroupId()).max().getAsInt()))));
+        verifyGroupListInUI();
     }
-
 }
