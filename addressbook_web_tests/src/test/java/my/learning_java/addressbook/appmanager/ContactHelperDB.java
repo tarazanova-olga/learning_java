@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 
 import java.util.List;
 
@@ -33,12 +34,14 @@ public class ContactHelperDB extends BaseHelper {
         type(By.name("email3"), contactData.getEmail3());
         attach(By.name("photo"), contactData.getPhoto());
 
-        if (creation && contactData.getGroup() != null){
-            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+        if (contactData.getGroup().size() > 0){
+            Assert.assertTrue(contactData.getGroup().size() == 1);
+            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup().iterator().next()
+            .getName());
         } //else {
  //           Assert.assertFalse(isElementPresent(By.name("new_group")));
  //       }
-    }
+   }
 
     public void initContactCreation() {click(By.linkText("add new"));}
 
@@ -113,7 +116,7 @@ public class ContactHelperDB extends BaseHelper {
             String address = cells.get(3).getText();
             int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
             contactCache.add(new ContactDataDB().withName(name).withMiddleName(null).withLastName(lastname)
-                    .withGroup(null).withId(id).withAddress(address)
+                    .withId(id).withAddress(address)
                     .withAllPhones(allPhones).withAllEmails(allEmails));
         }
 

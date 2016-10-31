@@ -28,7 +28,7 @@ public class ContactModificationDBTest extends TestBase {
         ContactDataDB modifyContact = before.iterator().next();
         ContactDataDB newContact = new ContactDataDB().withName("Мария").withMiddleName("Ивановна").withLastName("Сидорова")
                 .withHomePhone("89651231111").withEmail("test@test.test2").withAddress("ул. Мира, д.10")
-                .withGroup("null").withId(modifyContact.getContactId());
+                .withId(modifyContact.getContactId());
         app.contactDB().modify(newContact);
         assertThat(app.contactDB().count(), equalTo(before.size()));
         ContactsDB after =  app.db().contacts();

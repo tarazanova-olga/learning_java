@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import com.thoughtworks.xstream.XStream;
 import my.learning_java.addressbook.model.db_model.ContactDataDB;
 import my.learning_java.addressbook.model.db_model.ContactsDB;
+import my.learning_java.addressbook.model.db_model.GroupsDB;
 import my.learning_java.addressbook.tests.TestBase;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;

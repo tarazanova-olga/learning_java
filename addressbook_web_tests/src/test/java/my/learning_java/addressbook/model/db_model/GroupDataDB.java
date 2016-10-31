@@ -5,9 +5,9 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import org.hibernate.annotations.Type;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @XStreamAlias("group")
 @Entity //связь с БД
@@ -30,6 +30,8 @@ public class GroupDataDB {
     @Column(name="group_id")
     private int groupId = Integer.MAX_VALUE;
 
+    @ManyToMany(mappedBy = "groups")
+    private Set<ContactDataDB> contacts = new HashSet<ContactDataDB>();
 
     public int getGroupId() {
         return groupId;
@@ -46,6 +48,10 @@ public class GroupDataDB {
 
     public String getFooter() {
         return groupFooter;
+    }
+
+    public ContactsDB getContacts() {
+        return new ContactsDB(contacts);
     }
 
     public GroupDataDB withName(String nameGroup) {

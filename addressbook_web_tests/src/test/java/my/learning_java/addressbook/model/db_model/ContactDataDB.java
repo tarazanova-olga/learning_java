@@ -5,11 +5,10 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import org.hibernate.annotations.Type;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.io.File;
+import java.util.HashSet;
+import java.util.Set;
 
 @XStreamAlias("contacts")
 @Entity
@@ -56,9 +55,6 @@ public class ContactDataDB {
     @Column(name="address")
     @Type(type = "text")
     private String address;
-    @Transient
-    @Expose
-    private String group;
     @XStreamOmitField
     @Id
     @Column(name="id")
@@ -75,6 +71,11 @@ public class ContactDataDB {
     @Expose
     @Transient
     private File photo;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name="address_in_groups",
+            joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
+    private Set<GroupDataDB> groups = new HashSet<GroupDataDB>();
 
     public ContactDataDB() {
     }
@@ -140,11 +141,6 @@ public class ContactDataDB {
         return this;
     }
 
-    public ContactDataDB withGroup(String group) {
-        this.group = group;
-        return this;
-    }
-
     public ContactDataDB withId(int contactId) {
         this.contactId = contactId;
         return this;
@@ -157,6 +153,11 @@ public class ContactDataDB {
 
     public ContactDataDB withPhoto(File photo) {
         this.photo = photo;
+        return this;
+    }
+
+    public ContactDataDB inGroup(GroupDataDB group){
+        groups.add(group);
         return this;
     }
 
@@ -189,6 +190,10 @@ public class ContactDataDB {
         return mobilePhone;
     }
 
+    public GroupsDB getGroup() {
+        return new GroupsDB(groups);
+    }
+
     public String getWorkPhone() {
         return workPhone;
     }
@@ -203,10 +208,6 @@ public class ContactDataDB {
 
     public String getAddress() {
         return address;
-    }
-
-    public String getGroup() {
-        return group;
     }
 
     public int getContactId() {return contactId;}
