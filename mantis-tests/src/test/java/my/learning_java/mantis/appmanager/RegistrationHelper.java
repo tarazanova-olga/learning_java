@@ -1,7 +1,6 @@
 package my.learning_java.mantis.appmanager;
 
 
-import my.learning_java.mantis.tests.BaseHelper;
 import org.openqa.selenium.By;
 
 public class RegistrationHelper extends BaseHelper {

@@ -1,4 +1,4 @@
-package my.learning_java.mantis.tests;
+package my.learning_java.mantis.appmanager;
 
 import my.learning_java.mantis.appmanager.ApplicationManager;
 import org.openqa.selenium.By;

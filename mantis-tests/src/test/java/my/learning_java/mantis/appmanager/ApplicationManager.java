@@ -20,6 +20,8 @@ public class ApplicationManager {
 
     public String browser;
     private RegistrationHelper registrationHelper;
+    private LoginHelper loginHelper;
+    private UserHelper userHelper;
     private FtpHelper ftp;
     private MailHelper mailHelper;
 
@@ -51,6 +53,20 @@ public class ApplicationManager {
             registrationHelper = new RegistrationHelper(this);
         }
         return registrationHelper;
+    }
+
+    public LoginHelper login() {
+        if (loginHelper == null) {
+            loginHelper = new LoginHelper(this);
+        }
+        return loginHelper;
+    }
+
+    public UserHelper user() {
+        if (userHelper == null) {
+            userHelper = new UserHelper(this);
+        }
+        return userHelper;
     }
 
     public WebDriver getDriver() {
