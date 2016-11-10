@@ -3,7 +3,7 @@ package my.learning_java.mantis.tests;
 import my.learning_java.mantis.model.Issue;
 import my.learning_java.mantis.model.Project;
 import org.testng.annotations.Test;
-import org.testng.annotations.TestInstance;
+
 
 import javax.xml.rpc.ServiceException;
 import java.net.MalformedURLException;
@@ -26,6 +26,7 @@ public class SoapTests extends TestBase{
 
     @Test
     public void testCreateIssue() throws MalformedURLException, ServiceException, RemoteException{
+        skipIfNotFixed(0000001);
         Set<Project> projects = app.soap().getProjects();
         Issue issue = new Issue().withSummary("Text issue")
                 .withDescription("Text issue description").withProject(projects.iterator().next());
