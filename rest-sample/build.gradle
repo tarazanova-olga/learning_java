@@ -1,0 +1,17 @@
+import com.sun.javafx.runtime.SystemProperties
+
+apply plugin: 'java'
+
+
+repositories
+ {
+     mavenCentral()
+ }
+
+dependencies
+ {
+     compile 'org.testng:testng:6.9.10'
+     compile 'org.apache.httpcomponents:httpclient:4.5.2'
+     compile 'com.google.code.gson:gson:2.7'
+     compile 'org.apache.httpcomponents:fluent-hc:4.5.2'
+ }
