@@ -9,6 +9,7 @@ import org.apache.http.client.fluent.Executor;
 import org.apache.http.client.fluent.Request;
 import org.apache.http.message.BasicNameValuePair;
 import org.testng.Assert;
+import org.testng.SkipException;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -25,6 +26,7 @@ public class RestAssuredTests {
 
     @Test
     public void testCreateIssue() throws IOException {
+        skipIfNotFixed(1);
         Set<Issue> oldIssues = getIssues();
         Issue newIssue = new Issue().withSubject("Test").withDescription("TestDescription");
         int issueId = createIssue(newIssue);
@@ -48,4 +50,24 @@ public class RestAssuredTests {
         JsonElement parsed = new JsonParser().parse(json);
         return parsed.getAsJsonObject().get("issue_id").getAsInt();
     }
+
+    private boolean isIssueOpen(int issueId) throws IOException {
+        String json = RestAssured.get("http://demo.bugify.com/api/issues.json").asString();
+        JsonElement parsed = new JsonParser().parse(json);
+        JsonElement issue = parsed.getAsJsonObject().get("issues").getAsJsonArray().get(issueId);
+        Issue goalIssue = new Gson().fromJson(issue, Issue.class);
+        if (!goalIssue.getState_name().equals("Closed")){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public void skipIfNotFixed(int issueId) throws IOException {
+        if (isIssueOpen(issueId)) {
+            throw new SkipException("Ignored because of issue " + issueId);
+        }
+    }
 }
+
+
