@@ -35,6 +35,7 @@ task testContacts(type: Test) { //для очищения данных о зап
         systemProperty 'verifyUI', "${verifyUI}"
     }
 }
+
 task testGroups(type: Test) { //для указания браузера запуска из консоли: -Pbrowser=chrome
     useTestNG(){
         suites 'src/test/resources/testng-groups.xml'

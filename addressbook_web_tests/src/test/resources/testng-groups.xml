@@ -4,8 +4,6 @@
     <test name="Groups" >
         <classes>
             <class name="my.learning_java.addressbook.tests.tests_for_groups.GroupCreationTest" />
-            <class name="my.learning_java.addressbook.tests.tests_for_groups.GroupModificationTest" />
-            <class name="my.learning_java.addressbook.tests.tests_for_groups.GroupDeletionTest" />
         </classes>
     </test>
 </suite>
