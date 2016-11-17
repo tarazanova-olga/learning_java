@@ -34,6 +34,9 @@ task testContacts(type: Test) { //для очищения данных о зап
     if (project.hasProperty('verifyUI')){
         systemProperty 'verifyUI', "${verifyUI}"
     }
+    if (project.hasProperty('platform')){
+        systemProperty 'platform', "${platform}"
+    }
 }
 
 task testGroups(type: Test) { //для указания браузера запуска из консоли: -Pbrowser=chrome
@@ -48,5 +51,8 @@ task testGroups(type: Test) { //для указания браузера зап�
     }
     if (project.hasProperty('verifyUI')){
         systemProperty 'verifyUI', "${verifyUI}"
+    }
+    if (project.hasProperty('platform')){
+        systemProperty 'platform', "${platform}"
     }
 }
